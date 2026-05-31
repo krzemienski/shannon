@@ -97,6 +97,39 @@ Strategy Layer (Goal Definition) → Planning Layer (Task Decomposition) → Exe
 - `team-coordinator` staged pipeline (team-plan / team-prd / team-exec / team-verify / team-fix) is hierarchical.
 - `tree-of-thoughts` exploration → pruning → expansion → evaluation → synthesis is hierarchical.
 
+### Pattern 4: Dynamic Workflows (runtime-orchestrated)
+
+The first three patterns all run orchestration **inside Claude's own turn loop** — a `/shannon:*` command or lead agent decides, dispatches via the Task tool, and waits. That orchestration competes for the lead's context window and stops when the turn stops.
+
+Claude Code's **Dynamic Workflows** add a fourth substrate: a JavaScript control program the runtime executes in the background, outside the conversation turn. The script declares phases in a literal `meta` block, then calls `agent()`, `parallel()`, `pipeline()`, and `phase()`. The runtime holds the loop, the branching, and the intermediate state — Claude's context sees only the final return value.
+
+```
+Claude turn → emit Workflow script → runtime executes (background) → only the result returns to context
+                                       ├── agent(prompt, {schema})    one sub-agent, optional structured output
+                                       ├── parallel([...thunks])      barrier: await all
+                                       └── pipeline(items, s1, s2)    per-item streaming, no barrier between stages
+```
+
+**When to reach for a Workflow instead of Patterns 1–3**:
+
+| Signal in the task | Right substrate |
+|---|---|
+| 2–8 independent sub-tasks, results needed together this turn | Pattern 1 (`dispatch-parallel`) |
+| Sequential tasks needing review between each | `subagent-driven-development` |
+| **Dozens of agents**, or **fan-out over an unknown-size work-list** | **Workflow** (`pipeline`) |
+| **Must survive context interrupts / resume mid-run** | **Workflow** (journaled, `resumeFromRunId`) |
+| **Loop-until-dry / loop-until-budget** discovery | **Workflow** (`while` + `budget`) |
+| Adversarial verify of every finding before committing | **Workflow** (`pipeline`: find → verify stage) |
+
+The rule mirrors Shannon's own "lightest tier that fits": Patterns 1–3 stay in-turn and are cheaper to reason about; a Workflow pays a small authoring cost to buy background execution, journaled resume, and scale past what one context can hold. Reach for it when the work-list is large or unbounded, not because it is the newest primitive.
+
+**Shannon's posture toward Workflows**:
+- `dispatch-parallel`, `plan-author` (`--mode deep`), and `team-coordinator` should **recommend emitting a Workflow** when a phase fans out past ~8 parallel units or iterates an unbounded discovery loop, rather than chaining Task dispatches across many turns.
+- The recommendation is advisory, not automatic — Shannon plans the orchestration; the operator runs the emitted Workflow. This preserves the Iron Rule: a Workflow's `agent()` calls still produce real-system evidence, and the completion gate still cites it.
+- `pipeline()` is the default fan-out shape (per-item streaming, no barrier); use a `parallel()` barrier only when a stage genuinely needs all prior results at once (dedup, early-exit-on-zero, cross-item comparison).
+
+This pattern complements rather than replaces the supervisor model: a Workflow is a supervisor whose loop the runtime holds instead of Claude's turn.
+
 ## Context isolation as design principle
 
 The primary purpose of multi-agent architectures is context isolation. Each sub-agent operates in a clean context window focused on its subtask without carrying accumulated context from other subtasks.

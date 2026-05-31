@@ -95,6 +95,30 @@ Independence Checklist:
 - [ ] No shared mutable state.
 - [ ] No database transactions spanning targets.
 
+## Scale ceiling — escalate to a Dynamic Workflow
+
+Single-message multi-Task dispatch is in-turn orchestration: every spawned agent's
+result returns to THIS context, and the batch is bounded by what one turn can hold.
+That is the right tool for **2–8 independent targets** whose results you need together
+now.
+
+When the target count is large or unbounded, stop chaining Task dispatches and
+**recommend emitting a Dynamic Workflow** instead:
+
+- **> ~8 parallel units**, or the work-list is discovered at runtime (one item per
+  changed file, per failing journey, per cluster) → a Workflow `pipeline()` streams
+  each item through its stages without a per-turn ceiling.
+- **Loop-until-dry / loop-until-budget** discovery (keep finding until N rounds return
+  nothing new) → a Workflow `while` loop with the `budget` guard.
+- **Must resume across a context interrupt** → a Workflow is journaled and resumable
+  via `resumeFromRunId`; an in-turn batch is not.
+
+The escalation is advisory: this skill plans the orchestration and names the Workflow
+shape; the operator runs it. The Iron Rule is preserved end to end — a Workflow's
+`agent()` calls produce the same real-system evidence, and `completion-gate` still
+cites it. See `multi-agent-patterns` → "Pattern 4: Dynamic Workflows" for the full
+decision table.
+
 ## File ownership (LOAD-BEARING for parallel and competitive)
 
 Each subagent owns its evidence/output directory exclusively. Cross-write = invalid run.

@@ -5,10 +5,13 @@
 **Version 1.0.0** — first stable release. The five pillars are on disk and self-verified by `/shannon:doctor`.
 
 ```bash
-# In Claude Code (when published):
-# Local install (v0.1.x — marketplace publishing pending):
-/plugin marketplace add /path/to/shannon-framework
-/plugin install shannon@shannon-framework
+# In Claude Code — install from the GitHub repo:
+/plugin marketplace add krzemienski/shannon
+/plugin install shannon@shannon
+
+# Or from a local clone:
+/plugin marketplace add /path/to/shannon
+/plugin install shannon@shannon-local
 ```
 
 ## What is this
