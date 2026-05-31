@@ -1,0 +1,471 @@
+[
+  {
+    "name": "autopilot",
+    "category": "autonomy",
+    "source": "oh-my-claudecode",
+    "cascade": 0,
+    "body_lines": 111
+  },
+  {
+    "name": "autopilot-runner",
+    "category": "autonomy",
+    "source": "shannon-merge",
+    "cascade": 0,
+    "body_lines": 203
+  },
+  {
+    "name": "brainstorm",
+    "category": "planning",
+    "source": "sdd",
+    "cascade": 0,
+    "body_lines": 56
+  },
+  {
+    "name": "codebase-analysis",
+    "category": "reflection",
+    "source": "shannon-merge",
+    "cascade": 0,
+    "body_lines": 121
+  },
+  {
+    "name": "communication-style",
+    "category": "planning",
+    "source": "ralph-specum",
+    "cascade": 1,
+    "body_lines": 79
+  },
+  {
+    "name": "completion-gate",
+    "category": "validation",
+    "source": "shannon-original",
+    "cascade": 0,
+    "body_lines": 148
+  },
+  {
+    "name": "condition-library",
+    "category": "autonomy",
+    "source": "northstar",
+    "cascade": 0,
+    "body_lines": 139
+  },
+  {
+    "name": "consensus-engine",
+    "category": "orchestration",
+    "source": "shannon-merge",
+    "cascade": 0,
+    "body_lines": 185
+  },
+  {
+    "name": "consolidate-memory",
+    "category": "reflection",
+    "source": "anthropic-skills",
+    "cascade": 0,
+    "body_lines": 123
+  },
+  {
+    "name": "create-ideas",
+    "category": "planning",
+    "source": "sdd",
+    "cascade": 0,
+    "body_lines": 9
+  },
+  {
+    "name": "create-meta-prompts",
+    "category": "planning",
+    "source": "anthropic-skills",
+    "cascade": 8,
+    "body_lines": 598
+  },
+  {
+    "name": "create-plans",
+    "category": "planning",
+    "source": "anthropic-skills",
+    "cascade": 11,
+    "body_lines": 483
+  },
+  {
+    "name": "create-validation-plan",
+    "category": "validation",
+    "source": "anthropic-skills",
+    "cascade": 0,
+    "body_lines": 163
+  },
+  {
+    "name": "critique",
+    "category": "orchestration",
+    "source": "shannon-merge",
+    "cascade": 0,
+    "body_lines": 123
+  },
+  {
+    "name": "deepen-prompt-plan",
+    "category": "planning",
+    "source": "anthropic-skills",
+    "cascade": 3,
+    "body_lines": 397
+  },
+  {
+    "name": "dispatch-parallel",
+    "category": "orchestration",
+    "source": "shannon-merge",
+    "cascade": 0,
+    "body_lines": 400
+  },
+  {
+    "name": "documentation-research",
+    "category": "planning",
+    "source": "shannon-original",
+    "cascade": 0,
+    "body_lines": 97
+  },
+  {
+    "name": "e2e-validate",
+    "category": "validation",
+    "source": "anthropic-skills",
+    "cascade": 7,
+    "body_lines": 234
+  },
+  {
+    "name": "evidence-gate",
+    "category": "validation",
+    "source": "shannon-merge",
+    "cascade": 0,
+    "body_lines": 102
+  },
+  {
+    "name": "evidence-indexing",
+    "category": "validation",
+    "source": "shannon-original",
+    "cascade": 0,
+    "body_lines": 132
+  },
+  {
+    "name": "full-functional-audit",
+    "category": "validation",
+    "source": "anthropic-skills",
+    "cascade": 2,
+    "body_lines": 214
+  },
+  {
+    "name": "full-ui-experience-audit",
+    "category": "validation",
+    "source": "anthropic-skills",
+    "cascade": 7,
+    "body_lines": 634
+  },
+  {
+    "name": "functional-validation",
+    "category": "validation",
+    "source": "anthropic-skills",
+    "cascade": 4,
+    "body_lines": 183
+  },
+  {
+    "name": "gate-validation-discipline",
+    "category": "validation",
+    "source": "anthropic-skills",
+    "cascade": 0,
+    "body_lines": 85
+  },
+  {
+    "name": "gepetto",
+    "category": "planning",
+    "source": "agent-toolkit",
+    "cascade": 5,
+    "body_lines": 340
+  },
+  {
+    "name": "goal-condition-architect",
+    "category": "autonomy",
+    "source": "anthropic-skills",
+    "cascade": 0,
+    "body_lines": 120
+  },
+  {
+    "name": "goal-engineering",
+    "category": "autonomy",
+    "source": "northstar",
+    "cascade": 0,
+    "body_lines": 119
+  },
+  {
+    "name": "goal-loop-orchestrator",
+    "category": "autonomy",
+    "source": "anthropic-skills",
+    "cascade": 0,
+    "body_lines": 128
+  },
+  {
+    "name": "goal-orchestration",
+    "category": "autonomy",
+    "source": "northstar",
+    "cascade": 0,
+    "body_lines": 131
+  },
+  {
+    "name": "goal-workflow",
+    "category": "autonomy",
+    "source": "anthropic-skills",
+    "cascade": 0,
+    "body_lines": 78
+  },
+  {
+    "name": "interview-framework",
+    "category": "planning",
+    "source": "ralph-specum",
+    "cascade": 2,
+    "body_lines": 69
+  },
+  {
+    "name": "ios-validation-runner",
+    "category": "validation",
+    "source": "anthropic-skills",
+    "cascade": 0,
+    "body_lines": 159
+  },
+  {
+    "name": "judge",
+    "category": "orchestration",
+    "source": "shannon-merge",
+    "cascade": 0,
+    "body_lines": 133
+  },
+  {
+    "name": "lesson-learned",
+    "category": "reflection",
+    "source": "agent-toolkit",
+    "cascade": 2,
+    "body_lines": 100
+  },
+  {
+    "name": "loop-runner",
+    "category": "autonomy",
+    "source": "shannon-merge",
+    "cascade": 0,
+    "body_lines": 133
+  },
+  {
+    "name": "memorize",
+    "category": "reflection",
+    "source": "shannon-merge",
+    "cascade": 1,
+    "body_lines": 153
+  },
+  {
+    "name": "multi-agent-patterns",
+    "category": "orchestration",
+    "source": "sadd",
+    "cascade": 0,
+    "body_lines": 253
+  },
+  {
+    "name": "no-fakes-discipline",
+    "category": "validation",
+    "source": "anthropic-skills",
+    "cascade": 0,
+    "body_lines": 195
+  },
+  {
+    "name": "no-mocking-validation-gates",
+    "category": "validation",
+    "source": "anthropic-skills",
+    "cascade": 0,
+    "body_lines": 162
+  },
+  {
+    "name": "northstar",
+    "category": "autonomy",
+    "source": "anthropic-skills",
+    "cascade": 0,
+    "body_lines": 64
+  },
+  {
+    "name": "observability-report",
+    "category": "reflection",
+    "source": "shannon-original",
+    "cascade": 1,
+    "body_lines": 148
+  },
+  {
+    "name": "optimize-prompt",
+    "category": "planning",
+    "source": "anthropic-skills",
+    "cascade": 0,
+    "body_lines": 926
+  },
+  {
+    "name": "oracle-review",
+    "category": "orchestration",
+    "source": "shannon-merge",
+    "cascade": 0,
+    "body_lines": 146
+  },
+  {
+    "name": "plan-author",
+    "category": "planning",
+    "source": "shannon-merge",
+    "cascade": 0,
+    "body_lines": 215
+  },
+  {
+    "name": "plan-converge",
+    "category": "planning",
+    "source": "shannon-original",
+    "cascade": 0,
+    "body_lines": 77
+  },
+  {
+    "name": "plan-do-check-act",
+    "category": "autonomy",
+    "source": "shannon-merge",
+    "cascade": 1,
+    "body_lines": 158
+  },
+  {
+    "name": "plan-tournament",
+    "category": "planning",
+    "source": "shannon-original",
+    "cascade": 1,
+    "body_lines": 62
+  },
+  {
+    "name": "prd-clarity",
+    "category": "planning",
+    "source": "shannon-original",
+    "cascade": 0,
+    "body_lines": 319
+  },
+  {
+    "name": "prompt-engineer",
+    "category": "planning",
+    "source": "anthropic-skills",
+    "cascade": 6,
+    "body_lines": 119
+  },
+  {
+    "name": "prompt-engineering-patterns",
+    "category": "planning",
+    "source": "anthropic-skills",
+    "cascade": 5,
+    "body_lines": 196
+  },
+  {
+    "name": "prompt-improver",
+    "category": "planning",
+    "source": "anthropic-skills",
+    "cascade": 3,
+    "body_lines": 155
+  },
+  {
+    "name": "python-agent-sdk",
+    "category": "tooling",
+    "source": "anthropic-skills",
+    "cascade": 0,
+    "body_lines": 301
+  },
+  {
+    "name": "ralph",
+    "category": "autonomy",
+    "source": "oh-my-claudecode",
+    "cascade": 0,
+    "body_lines": 131
+  },
+  {
+    "name": "reality-verification",
+    "category": "validation",
+    "source": "ralph-specum",
+    "cascade": 2,
+    "body_lines": 103
+  },
+  {
+    "name": "reflect",
+    "category": "reflection",
+    "source": "shannon-merge",
+    "cascade": 1,
+    "body_lines": 122
+  },
+  {
+    "name": "refusal-discipline",
+    "category": "validation",
+    "source": "shannon-original",
+    "cascade": 0,
+    "body_lines": 112
+  },
+  {
+    "name": "research-validation",
+    "category": "planning",
+    "source": "shannon-original",
+    "cascade": 0,
+    "body_lines": 145
+  },
+  {
+    "name": "root-cause-tracing",
+    "category": "planning",
+    "source": "shannon-merge",
+    "cascade": 0,
+    "body_lines": 191
+  },
+  {
+    "name": "sequential-analysis",
+    "category": "planning",
+    "source": "shannon-original",
+    "cascade": 0,
+    "body_lines": 102
+  },
+  {
+    "name": "session-handoff",
+    "category": "reflection",
+    "source": "agent-toolkit",
+    "cascade": 0,
+    "body_lines": 133
+  },
+  {
+    "name": "spec-workflow",
+    "category": "planning",
+    "source": "ralph-specum",
+    "cascade": 1,
+    "body_lines": 89
+  },
+  {
+    "name": "subagent-driven-development",
+    "category": "orchestration",
+    "source": "sadd",
+    "cascade": 0,
+    "body_lines": 381
+  },
+  {
+    "name": "team-coordinator",
+    "category": "orchestration",
+    "source": "shannon-merge",
+    "cascade": 0,
+    "body_lines": 551
+  },
+  {
+    "name": "transform-validation-prompt",
+    "category": "validation",
+    "source": "anthropic-skills",
+    "cascade": 1,
+    "body_lines": 137
+  },
+  {
+    "name": "tree-of-thoughts",
+    "category": "orchestration",
+    "source": "sadd-merge",
+    "cascade": 0,
+    "body_lines": 423
+  },
+  {
+    "name": "verification-before-completion",
+    "category": "validation",
+    "source": "anthropic-skills",
+    "cascade": 0,
+    "body_lines": 93
+  },
+  {
+    "name": "visual-inspection",
+    "category": "validation",
+    "source": "anthropic-skills",
+    "cascade": 3,
+    "body_lines": 163
+  }
+]

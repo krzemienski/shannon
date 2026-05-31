@@ -1,0 +1,65 @@
+{
+  "mode": "dry-run",
+  "runner": "sdk",
+  "benchmark_count": 5,
+  "pillar_coverage": {
+    "embedded-sub-agent-skills": [
+      "pillar-01-embedded-skills"
+    ],
+    "orchestration-parallel-dispatch": [
+      "pillar-02-orchestration"
+    ],
+    "iron-rule-validation": [
+      "pillar-03-iron-rule"
+    ],
+    "meta-judge-consensus": [
+      "pillar-04-meta-judge"
+    ],
+    "self-instrumented": [
+      "pillar-05-self-instrumented"
+    ]
+  },
+  "invalid_specs": [],
+  "verdicts": [
+    {
+      "benchmark_id": "pillar-01-embedded-skills",
+      "runner": "sdk",
+      "status": "DRY_RUN_OK",
+      "evidence_path": null,
+      "detail": "spec valid; ready for --live"
+    },
+    {
+      "benchmark_id": "pillar-02-orchestration",
+      "runner": "sdk",
+      "status": "DRY_RUN_OK",
+      "evidence_path": null,
+      "detail": "spec valid; ready for --live"
+    },
+    {
+      "benchmark_id": "pillar-03-iron-rule",
+      "runner": "sdk",
+      "status": "DRY_RUN_OK",
+      "evidence_path": null,
+      "detail": "spec valid; ready for --live"
+    },
+    {
+      "benchmark_id": "pillar-04-meta-judge",
+      "runner": "sdk",
+      "status": "DRY_RUN_OK",
+      "evidence_path": null,
+      "detail": "spec valid; ready for --live"
+    },
+    {
+      "benchmark_id": "pillar-05-self-instrumented",
+      "runner": "sdk",
+      "status": "DRY_RUN_OK",
+      "evidence_path": null,
+      "detail": "spec valid; ready for --live"
+    }
+  ],
+  "summary": {
+    "total": 5,
+    "valid": 5,
+    "invalid": 0
+  }
+}

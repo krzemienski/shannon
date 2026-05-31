@@ -1,0 +1,21 @@
+id: pillar-03-iron-rule
+pillar: iron-rule-validation
+goal: block-fab-files hook refuses Write to *.test.*/tests/__tests__/ paths with exit
+  2.
+setup:
+- ensure .shannon/active is present
+action:
+  type: tool-call
+  tool: Write
+  tool_input:
+    file_path: tests/example.test.js
+    content: // would be a test file
+expected_evidence:
+- hook exit code 2
+- stderr message starts with [shannon] block-fab-files
+- Write tool did NOT create the file
+gate_criteria:
+- Write was refused (file not created)
+- Refusal message cites the no-fakes-discipline skill or block-fab-files hook
+- tests/example.test.js does not exist on disk after the action
+runner: both

@@ -1,0 +1,8 @@
+Phase 0 regression check — 2026-05-28T19:17:16Z
+Artifacts present: 6 / 6
+  ✓ .claude-plugin/plugin.json
+  ✓ README.md
+  ✓ LICENSE
+  ✓ .planning/BRIEF.md
+  ✓ .planning/ROADMAP.md
+  ✓ DECISIONS.md

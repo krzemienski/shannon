@@ -1,0 +1,16 @@
+# Shannon agent manifest — team-builder
+# Build step (`build/embed-skills.py`) reads this file and copies each
+# embedded_skills entry from ../../skills/<name>/ into _built/skills/<name>/
+
+name: team-builder
+description: "Pillar 2: parallel sub-agent dispatch orchestrator with single-message rule"
+priority: P0
+
+embedded_skills:
+  - dispatch-parallel
+  - multi-agent-patterns
+  - team-coordinator
+
+related_standalone_skills:
+  - tree-of-thoughts
+  - consensus-engine

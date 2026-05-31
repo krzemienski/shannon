@@ -1,0 +1,95 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "startup|resume|clear|compact",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "PATH=\"/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:$PATH\" node \"${CLAUDE_PLUGIN_ROOT}/hooks/observability.js\""
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "PATH=\"/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:$PATH\" node \"${CLAUDE_PLUGIN_ROOT}/hooks/observability.js\""
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Write|Edit|MultiEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "PATH=\"/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:$PATH\" node \"${CLAUDE_PLUGIN_ROOT}/hooks/block-fab-files.js\""
+          }
+        ]
+      },
+      {
+        "matcher": "Edit|MultiEdit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "PATH=\"/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:$PATH\" node \"${CLAUDE_PLUGIN_ROOT}/hooks/pre-edit-discipline.js\""
+          }
+        ]
+      },
+      {
+        "matcher": "TaskUpdate",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "PATH=\"/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:$PATH\" node \"${CLAUDE_PLUGIN_ROOT}/hooks/evidence-gate.js\""
+          }
+        ]
+      },
+      {
+        "matcher": "Task",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "PATH=\"/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:$PATH\" node \"${CLAUDE_PLUGIN_ROOT}/hooks/subagent-governance.js\""
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Bash|Edit|Write|MultiEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "PATH=\"/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:$PATH\" node \"${CLAUDE_PLUGIN_ROOT}/hooks/post-action-discipline.js\""
+          }
+        ]
+      },
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "PATH=\"/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:$PATH\" node \"${CLAUDE_PLUGIN_ROOT}/hooks/observability.js\""
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "PATH=\"/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:$PATH\" node \"${CLAUDE_PLUGIN_ROOT}/hooks/stop-semantics.js\""
+          }
+        ]
+      }
+    ]
+  }
+}

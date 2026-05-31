@@ -1,0 +1,16 @@
+# Shannon agent manifest — reviewer
+# Build step (`build/embed-skills.py`) reads this file and copies each
+# embedded_skills entry from ../../skills/<name>/ into _built/skills/<name>/
+
+name: reviewer
+description: "Code review with line-cited suggestions and root-cause tracing"
+priority: P1
+
+embedded_skills:
+  - judge
+  - codebase-analysis
+  - root-cause-tracing
+
+related_standalone_skills:
+  - judge
+  - evidence-gate

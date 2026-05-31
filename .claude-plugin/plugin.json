@@ -1,0 +1,34 @@
+{
+  "name": "shannon",
+  "version": "1.0.0",
+  "description": "Shannon \u2014 Claude Code plugin for high-stakes multi-stage agentic work. Iron Rule: real-system evidence on disk, refuses verdicts without proof. Embedded sub-agent skills (sub-agents carry their skills, can't fail to load). Standalone \u2014 no required MCP servers; Context7 and sequential-thinking recommended.",
+  "author": {
+    "name": "Nick Krzemienski",
+    "url": "https://github.com/krzemienski"
+  },
+  "homepage": "https://github.com/krzemienski/shannon",
+  "repository": "https://github.com/krzemienski/shannon",
+  "license": "MIT",
+  "keywords": [
+    "claude-code",
+    "orchestration",
+    "iron-rule",
+    "functional-validation",
+    "sub-agents",
+    "embedded-skills",
+    "meta-judge",
+    "standalone-plugin",
+    "no-mocks"
+  ],
+  "recommended_mcp_servers": {
+    "context7": {
+      "purpose": "Fresh library/API documentation for prompt-engineering + research skills",
+      "required": false
+    },
+    "sequential-thinking": {
+      "purpose": "Systematic problem decomposition for planning + root-cause skills",
+      "required": false
+    }
+  },
+  "required_mcp_servers": {}
+}

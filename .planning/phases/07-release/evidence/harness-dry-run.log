@@ -1,0 +1,20 @@
+=== Shannon v1 harness orchestrator ===
+Mode: --dry-run
+Target: all
+Repo: /sessions/laughing-admiring-lovelace/mnt/shannon-framework/v1/shannon
+
+--- SDK runner ---
+  mode: dry-run
+  summary: {"total": 5, "valid": 5, "invalid": 0}
+  verdicts: 5
+  exit code: 0
+
+--- Tmux runner ---
+  mode: dry-run
+  summary: {"total": 5, "valid": 5, "invalid": 0, "tmux_ok": true, "claude_ok": true}
+  verdicts: 5
+  exit code: 0
+
+=== Aggregate ===
+SDK runner exit: 0
+Tmux runner exit: 0

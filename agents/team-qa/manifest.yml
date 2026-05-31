@@ -1,0 +1,17 @@
+# Shannon agent manifest — team-qa
+# Build step (`build/embed-skills.py`) reads this file and copies each
+# embedded_skills entry from ../../skills/<name>/ into _built/skills/<name>/
+
+name: team-qa
+description: "Pillar 3: QA cycle owner — build/lint/test loops with stall detection"
+priority: P0
+
+embedded_skills:
+  - functional-validation
+  - no-fakes-discipline
+  - completion-gate
+  - evidence-gate
+
+related_standalone_skills:
+  - e2e-validate
+  - full-functional-audit

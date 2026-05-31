@@ -1,0 +1,45 @@
+# Build artifacts (embedded skill bundles produced by build/embed-skills.py)
+agents/*/_built/
+
+# Evidence directories from validation runs (large; per-run)
+.evidence/
+e2e-evidence/
+
+# Validation harness outputs
+.shannon/runs/
+.shannon/logs/
+.shannon/cache/
+
+# Working planning files (PLAN.md intermediates — keep SUMMARY.md only)
+.planning/phases/**/PLAN.md
+.planning/phases/**/RESEARCH.md
+.planning/phases/**/FINDINGS.md
+.planning/scratchpad/
+.continue-here*.md
+
+# OS / editor
+.DS_Store
+*.swp
+*~
+.idea/
+.vscode/
+__pycache__/
+*.pyc
+
+# Local config
+.env
+.env.*
+!.env.example
+
+# Tmux harness state (per-run, ephemeral)
+scripts/harness/_state/
+scripts/harness/_logs/
+
+# Local agent tool-state cruft (never part of the plugin surface)
+.omc/
+.a5c/
+.mimirs/
+
+# Session tool artifacts (not plugin surface)
+.remember/
+.claude/

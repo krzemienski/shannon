@@ -1,0 +1,6 @@
+Plan 01-03 re-executed (cascade-preserving + dirs_exist_ok) — 2026-05-28T19:32:32.225158Z
+Copied: 31
+YAML: 31/31
+Cascade: 76/76
+Broken refs (sample): []
+Phase 1 gate: PASS

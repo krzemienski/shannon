@@ -1,0 +1,15 @@
+============================================================
+Shannon v1 embed-skills build
+============================================================
+critic: embedded 2/2 (+inlined into AGENT.md)
+executor: embedded 4/4 (+inlined into AGENT.md)
+meta-judge: embedded 2/2 (+inlined into AGENT.md)
+planner: embedded 5/5 (+inlined into AGENT.md)
+reviewer: embedded 3/3 (+inlined into AGENT.md)
+team-builder: embedded 3/3 (+inlined into AGENT.md)
+team-qa: embedded 4/4 (+inlined into AGENT.md)
+team-validator: embedded 5/5 (+inlined into AGENT.md)
+validator: embedded 4/4 (+inlined into AGENT.md)
+
+
+Build OK. Evidence: /sessions/laughing-admiring-lovelace/mnt/shannon-framework/v1/shannon/.planning/phases/02-agent-embedding/evidence/build-skills.log

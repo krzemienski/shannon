@@ -1,0 +1,17 @@
+============================================================
+Shannon v1 verify-build
+============================================================
+critic: declared=2 on_disk=2 matched=2
+executor: declared=4 on_disk=4 matched=4
+meta-judge: declared=2 on_disk=2 matched=2
+planner: declared=5 on_disk=5 matched=5
+reviewer: declared=3 on_disk=3 matched=3
+team-builder: declared=3 on_disk=3 matched=3
+team-qa: declared=4 on_disk=4 matched=4
+team-validator: declared=5 on_disk=5 matched=5
+validator: declared=4 on_disk=4 matched=4
+
+Total checks: 32
+Mismatches: 0
+
+✓ All embedded skills match canonical sources

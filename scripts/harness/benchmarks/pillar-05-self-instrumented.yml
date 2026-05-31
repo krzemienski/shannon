@@ -1,0 +1,20 @@
+id: pillar-05-self-instrumented
+pillar: self-instrumented
+goal: /shannon:doctor exits 0 with summary.mismatches == 0 on a clean v1 install.
+setup:
+- python3 build/embed-skills.py
+action:
+  type: shell
+  command: python3 scripts/doctor.py
+expected_evidence:
+- exit code 0
+- stdout is valid JSON
+- summary.mismatches == 0
+- summary.checks_pass == summary.checks_pass + summary.checks_fail (i.e. checks_fail
+  == 0)
+gate_criteria:
+- doctor.py exits 0
+- JSON parses
+- mismatches == 0
+- checks_fail == 0
+runner: both

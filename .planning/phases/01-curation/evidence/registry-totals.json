@@ -1,0 +1,28 @@
+{
+  "by_category": {
+    "autonomy": 12,
+    "orchestration": 9,
+    "planning": 21,
+    "reflection": 7,
+    "tooling": 1,
+    "validation": 17
+  },
+  "by_source_provenance": {
+    "agent-toolkit": 3,
+    "anthropic-skills": 25,
+    "northstar": 3,
+    "oh-my-claudecode": 2,
+    "ralph-specum": 4,
+    "sadd": 2,
+    "sadd-merge": 1,
+    "sdd": 2,
+    "shannon-merge": 15,
+    "shannon-original": 10
+  },
+  "skills": 67,
+  "skills_with_cascade": 23,
+  "total_body_lines": 13054,
+  "total_cascade_files": 78,
+  "total_cascade_references_declared": 77,
+  "total_skill_md_bytes": 594321
+}

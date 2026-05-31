@@ -1,0 +1,64 @@
+{
+  "version": "0.1.0",
+  "repo_root": "/sessions/laughing-admiring-lovelace/mnt/shannon-framework/v1/shannon",
+  "summary": {
+    "skills_with_required_hooks": 8,
+    "total_hook_dependencies": 12,
+    "registered_hooks": 7,
+    "checks_pass": 8,
+    "checks_fail": 0,
+    "mismatches": 0
+  },
+  "checks": [
+    {
+      "id": "plugin-manifest",
+      "name": "Plugin manifest present + valid JSON",
+      "status": "PASS"
+    },
+    {
+      "id": "skills-count",
+      "name": "Skills count in 25-35",
+      "value": 31,
+      "status": "PASS"
+    },
+    {
+      "id": "agents-count",
+      "name": "Agents count in 5-12",
+      "value": 9,
+      "status": "PASS"
+    },
+    {
+      "id": "commands-count",
+      "name": "Commands count in 13-20",
+      "value": 19,
+      "status": "PASS"
+    },
+    {
+      "id": "hooks-count",
+      "name": "Hooks count in 5-9",
+      "value": 7,
+      "status": "PASS"
+    },
+    {
+      "id": "hooks-json",
+      "name": "hooks.json registers real scripts",
+      "registered_count": 7,
+      "status": "PASS"
+    },
+    {
+      "id": "required-hooks-contract",
+      "name": "required_hooks \u2192 registered hooks",
+      "skills_with_required_hooks": 8,
+      "total_dependencies": 12,
+      "mismatches": [],
+      "status": "PASS"
+    },
+    {
+      "id": "build-state",
+      "name": "Agents _built/ matches manifest",
+      "mismatches": [],
+      "status": "PASS"
+    }
+  ],
+  "mismatches": []
+}

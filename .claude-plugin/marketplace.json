@@ -1,0 +1,15 @@
+{
+  "name": "shannon-local",
+  "owner": {
+    "name": "shannon-framework"
+  },
+  "plugins": [
+    {
+      "name": "shannon",
+      "source": "./",
+      "description": "Shannon: Claude Code plugin for high-stakes multi-stage agentic work with Iron Rule validation discipline.",
+      "category": "agentic-workflow",
+      "version": "1.0.0"
+    }
+  ]
+}

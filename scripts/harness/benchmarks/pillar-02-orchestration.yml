@@ -1,0 +1,19 @@
+id: pillar-02-orchestration
+pillar: orchestration-parallel-dispatch
+goal: '/shannon:dispatch --mode parallel actually spawns multiple subagents in a single
+  message (the canonical Skill: dispatch-parallel pattern).'
+setup:
+- ensure no .shannon/disabled present
+- touch .shannon/active
+action:
+  type: slash-command
+  command: '/shannon:dispatch "task A: list 3 numbers" "task B: list 3 colors" --mode
+    parallel'
+expected_evidence:
+- transcript contains 2 Task tool uses in the same response (single-message dispatch)
+- both subagents complete and emit output
+gate_criteria:
+- 2 Task tool uses in single message (verified by transcript JSON shape)
+- judge skill invoked on each output
+- aggregate report file written under reports/
+runner: both

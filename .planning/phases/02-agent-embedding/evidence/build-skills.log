@@ -1,0 +1,61 @@
+Shannon v1 embed-skills build evidence
+============================================================
+
+## Summary
+
+critic: embedded 2/2 (+inlined into AGENT.md)
+executor: embedded 4/4 (+inlined into AGENT.md)
+meta-judge: embedded 2/2 (+inlined into AGENT.md)
+planner: embedded 8/8 (+inlined into AGENT.md)
+reviewer: embedded 3/3 (+inlined into AGENT.md)
+team-builder: embedded 3/3 (+inlined into AGENT.md)
+team-qa: embedded 4/4 (+inlined into AGENT.md)
+team-validator: embedded 5/5 (+inlined into AGENT.md)
+validator: embedded 4/4 (+inlined into AGENT.md)
+
+## Per-skill copies
+
+  critic ← judge
+  critic ← evidence-gate
+  critic: inlined 2 SKILL.md bodies into AGENT.md
+  executor ← dispatch-parallel
+  executor ← functional-validation
+  executor ← reflect
+  executor ← codebase-analysis
+  executor: inlined 4 SKILL.md bodies into AGENT.md
+  meta-judge ← judge
+  meta-judge ← consensus-engine
+  meta-judge: inlined 2 SKILL.md bodies into AGENT.md
+  planner ← plan-author
+  planner ← interview-framework
+  planner ← goal-condition-architect
+  planner ← spec-workflow
+  planner ← create-meta-prompts
+  planner ← codebase-analysis
+  planner ← skill-inventory
+  planner ← library-docs-fetch
+  planner: inlined 8 SKILL.md bodies into AGENT.md
+  reviewer ← judge
+  reviewer ← codebase-analysis
+  reviewer ← root-cause-tracing
+  reviewer: inlined 3 SKILL.md bodies into AGENT.md
+  team-builder ← dispatch-parallel
+  team-builder ← multi-agent-patterns
+  team-builder ← team-coordinator
+  team-builder: inlined 3 SKILL.md bodies into AGENT.md
+  team-qa ← functional-validation
+  team-qa ← no-fakes-discipline
+  team-qa ← completion-gate
+  team-qa ← evidence-gate
+  team-qa: inlined 4 SKILL.md bodies into AGENT.md
+  team-validator ← judge
+  team-validator ← functional-validation
+  team-validator ← consensus-engine
+  team-validator ← visual-inspection
+  team-validator ← full-functional-audit
+  team-validator: inlined 5 SKILL.md bodies into AGENT.md
+  validator ← functional-validation
+  validator ← evidence-gate
+  validator ← evidence-indexing
+  validator ← refusal-discipline
+  validator: inlined 4 SKILL.md bodies into AGENT.md
