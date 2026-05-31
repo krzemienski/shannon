@@ -45,10 +45,9 @@ Anything else: ship as research surfaces a need.
 ## Quick start
 
 ```bash
-# 1. Install
-# Local install (v0.1.x — marketplace publishing pending):
-/plugin marketplace add /path/to/shannon-framework
-/plugin install shannon@shannon-framework
+# 1. Install (from the published GitHub repo)
+/plugin marketplace add krzemienski/shannon
+/plugin install shannon@shannon
 
 # 2. Activate in your project
 /shannon:enforce on
