@@ -35,6 +35,11 @@ __pycache__/
 scripts/harness/_state/
 scripts/harness/_logs/
 
+# Skills-10x harness evidence + probe transcripts (per-run, ephemeral).
+# Captures real `claude -p --debug` stdout/debug/meta which may contain auth
+# tokens, env vars, paths, session secrets. NEVER commit. NEVER `git add -f`.
+.skills10x/
+
 # Local agent tool-state cruft (never part of the plugin surface)
 .omc/
 .a5c/
