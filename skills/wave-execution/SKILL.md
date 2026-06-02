@@ -1,17 +1,29 @@
 ---
 name: wave-execution
-description: Dependency-wave execution for a multi-phase plan — the DeepPlan execution doctrine. ALWAYS use when executing a phase plan whose tasks can run in dependency-ordered waves, when the user says "execute this phase plan in dependency waves", "run the plan phases as parallel waves", "decompose this plan into dependency-ordered waves", or when /shannon:plan --mode deep emits a wave plan. Groups tasks into dependency waves, spawns ALL agents in a wave in ONE message for true parallelism, shares context via the evidence tree (not Serena), runs a synthesis + validation gate between waves. NOT for single-task work or generic autopilot/team dispatch — only when a phase plan is being decomposed into waves. NO MOCKS in any wave deliverable.
+description: The DeepPlan execution doctrine for running a multi-phase plan as dependency-ordered PARALLEL waves. INVOKE THIS SKILL — do NOT improvise wave execution from memory. The load-bearing mechanics are exactly what a freelanced run gets WRONG — (1) every agent in a wave MUST be spawned in ONE message — improvised runs spawn one agent per message, which is silently SEQUENTIAL with zero speedup; (2) a between-wave synthesis + validation gate MUST run before the next wave — improvised runs skip it and let conflicts/missing-integrations through; (3) a shared-context handoff file MUST be written first — improvised runs start agents blind. ALWAYS use when executing or running a multi-phase / multi-wave plan in parallel, when the user says "execute this phase plan in dependency waves", "run the plan phases as parallel waves", "decompose this plan into dependency-ordered waves", "wave-execute the plan", or when /shannon:plan --mode deep emits a wave plan. Shares context via the on-disk evidence tree (not Serena). NOT for single-task or strictly-sequential work, and NOT generic autopilot/team dispatch. NO MOCKS in any wave deliverable.
 triggers:
   - "execute this phase plan in dependency waves"
   - "run the plan phases as parallel waves"
   - "decompose this plan into dependency-ordered waves"
-  - "wave-execute the phase plan"
+  - "wave-execute the plan"
   - "spawn each wave of agents in parallel with a synthesis gate between waves"
 ---
 
 # wave-execution
 
 DeepPlan's execution doctrine. Think in waves, spawn in parallel, share context via the evidence tree, validate between waves.
+
+## Why invoke this skill — never improvise wave execution
+
+Decomposing a plan into dependency waves *looks* simple, so the natural instinct is to read the phase files and start executing by hand. That instinct produces a broken wave run every time, because the three mechanics that make waves actually parallel and safe are precisely the ones an improvised run drops:
+
+| Improvised (wrong) | This skill (correct) |
+|---|---|
+| Spawns one agent per message → **silently sequential**, zero speedup | ALL agents in a wave in ONE message → true `max()` parallelism |
+| Skips the between-wave gate → conflicts & missing integrations slip through | Mandatory synthesis + validation gate before the next wave |
+| Starts agents with no shared context → divergent, duplicated work | Writes `wave-context.md` handoff first; every agent reads it |
+
+If you are about to "just decompose the plan and run it," STOP and invoke this skill — the protocol below is the part you would otherwise get wrong.
 
 > **Provenance / adaptation:** Ported from legacy `modes/WAVE_EXECUTION.md` (Shannon V3). The legacy version hard-required the Serena MCP for context sharing. This version replaces Serena with Shannon's on-disk **evidence tree + `.shannon/state/`** (per D3 — no Memory/Serena dependency). Behavior is otherwise preserved: dependency-grouped waves, one-message parallel spawn, per-wave synthesis gate.
 
