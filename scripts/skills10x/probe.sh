@@ -106,6 +106,44 @@ START_TS="$(date +%s)"
 SESSION_UUID="$(python3 -c 'import uuid; print(uuid.uuid4())')"
 echo "$SESSION_UUID" > "$OUTDIR/$LABEL.session-id"
 PROBE_DENY="${PROBE_DENY:-Edit Write MultiEdit NotebookEdit Bash Task Agent Workflow Monitor}"
+
+# --- clean substrate (coordinator/teams personas strip the Skill tool) ----------
+# CRITICAL (root-caused 2026-06-02): ~/.claude/settings.json's env block can set
+# CLAUDE_CODE_COORDINATOR_MODE=1 (and EXPERIMENTAL_AGENT_TEAMS=1). In that mode the
+# headless `claude -p` model is given a TEAMMATE persona whose toolset collapses to
+# {SendMessage, TaskStop} — NO Skill tool — so skill ACTIVATION cannot be measured at
+# all (every probe false-reads as REGISTRATION/ACTIVATION failure). This silently
+# invalidated every earlier wave-execution grade. A shell-level `env -u` does NOT fix
+# it: claude re-applies its settings.json env block internally, overriding process env.
+# The only reliable lever is `--settings` (higher precedence than user settings): we
+# emit a tiny override forcing coordinator+teams OFF while carrying the real env's auth
+# base URL + model routing through unchanged. This changes ONLY env vars — the
+# read-only --allowedTools/--disallowedTools posture is untouched, so the D8
+# containment guarantee still holds. Override with PROBE_SETTINGS=<file>, or
+# PROBE_SETTINGS=none to deliberately probe the contaminated path (debugging only).
+PROBE_SETTINGS="${PROBE_SETTINGS:-}"
+SETTINGS_FLAG=""
+if [[ "$PROBE_SETTINGS" == "none" ]]; then
+  : # explicit opt-out — measure the real (possibly coordinator-contaminated) path
+elif [[ -n "$PROBE_SETTINGS" ]]; then
+  SETTINGS_FLAG="--settings $(printf '%q' "$PROBE_SETTINGS")"
+else
+  CLEAN_SETTINGS="$OUTDIR/$LABEL.clean-settings.json"
+  python3 - "$CLEAN_SETTINGS" <<'PYS'
+import json, os, sys
+out = sys.argv[1]
+try:
+    env = (json.load(open(os.path.expanduser("~/.claude/settings.json"))).get("env") or {})
+except Exception:
+    env = {}
+# Force the Skill-stripping personas OFF; preserve auth + model routing.
+env["CLAUDE_CODE_COORDINATOR_MODE"] = "0"
+env["CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS"] = "0"
+json.dump({"env": env}, open(out, "w"), indent=2)
+PYS
+  SETTINGS_FLAG="--settings $(printf '%q' "$CLEAN_SETTINGS")"
+fi
+
 read -r -d '' RUNNER <<EOF
 claude -p $(printf '%q' "$PROMPT") \
   --debug-file $(printf '%q' "$DEBUG_FILE") \
@@ -113,6 +151,7 @@ claude -p $(printf '%q' "$PROMPT") \
   --session-id $(printf '%q' "$SESSION_UUID") \
   --allowedTools Read Grep Glob \
   --disallowedTools ${PROBE_DENY} \
+  ${SETTINGS_FLAG} \
   ${EXTRA_ARGS[*]:-} \
   > $(printf '%q' "$STDOUT_FILE") 2>> $(printf '%q' "$DEBUG_FILE")
 echo \$? > $(printf '%q' "$DONE_FILE")
