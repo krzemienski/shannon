@@ -36,6 +36,8 @@ A standalone Claude Code plugin that turns multi-stage agentic work into a seque
 - Replace Claude Code as the runtime (Shannon runs inside it)
 - Compete with IDEs (Cursor / Cline / Continue.dev) for the editor surface
 
+> **Amendment 2026-06-01 (D7 carve-out).** The opt-in React + WebSocket human-in-the-loop approval UI is re-included as **v0.2.0 scope** (a separate, later train that ships after the v1.1 consolidation edition). It is carved out of the "no server at runtime" constraint above with one hard condition: the approval UI **MUST stay non-required**. Users who do not enable it keep the full "function with zero MCPs / no required server" install promise. Enabling the UI is always opt-in; it never becomes a hard dependency of any documented workflow. See `DECISIONS.md` → D7 and `plans/260601-1712-shannon-consolidation/APPROVAL-SIGNED.md`.
+
 ## Component target shape (refined during Phase 1 audit)
 
 - **Skills** (canonical source-of-truth): ~30 (curated from the 67 in `shannon-framework/skills/`)

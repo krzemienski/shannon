@@ -21,11 +21,13 @@ Rationale for absorption: each merge group was 3-4 commands with overlapping beh
 
 Each consolidated command's body explicitly documents the absorbed modes (see `v1 consolidation:` callout at top of each command file).
 
-## Deferred to v1.x (1)
+## Restored in v1.1 (1) — was: Deferred to v1.x
 
-| Cut command | Why deferred | When to re-introduce |
+> **Amendment 2026-06-01 (D6).** `forge` is **restored in v1.1**, reversing the original deferral below. The user signed the reversal (`plans/260601-1712-shannon-consolidation/APPROVAL-SIGNED.md` → G4 / D6): the 10-phase pipeline ships now and gets its own phase. The deferral rationale is retained for the historical trail, but no longer governs — forge is in v1.1. Forge-vs-cook recommended-workflow guidance is documented so the two overlapping pipelines do not confuse users (`cook` = lighter 5-phase path; `forge` = full 10-phase oracle-gated pipeline for high-stakes work).
+
+| Restored command | Original deferral rationale (historical) | Status |
 |---|---|---|
-| `forge` | The 10-phase Crucible pipeline overlaps substantially with `/shannon:cook` (which is the lighter v0.1.0 path through plan → execute → validate → gate). The two distinguishing features — oracle plan-review pre-execution + oracle quorum post-execution — were absorbed into `/shannon:cook` via the `Task: critic` agent embedded in cook's flow plus the optional `/shannon:audit --scope completion-evidence` for post-hoc oracle-style review. v0.1.0 leans on `cook` + `audit` + `validate` instead of a separate forge command. | v1.x if user feedback shows the 10-phase ceremony is materially better than cook's 5-phase flow for high-stakes work. Likely re-introduce as `/shannon:cook --rigorous` rather than a separate command. |
+| `forge` | The 10-phase Crucible pipeline overlaps substantially with `/shannon:cook` (which is the lighter v0.1.0 path through plan → execute → validate → gate). The two distinguishing features — oracle plan-review pre-execution + oracle quorum post-execution — were absorbed into `/shannon:cook` via the `Task: critic` agent embedded in cook's flow plus the optional `/shannon:audit --scope completion-evidence` for post-hoc oracle-style review. v0.1.0 leaned on `cook` + `audit` + `validate` instead of a separate forge command. | **RESTORED in v1.1 (D6).** No longer deferred — forge ships as a first-class command with its own phase. |
 
 ## What this means for cross-references
 

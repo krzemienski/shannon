@@ -91,3 +91,40 @@ Per the Iron Rule applied to Shannon's own development:
 - Changes require updated PRD reference + dated entry
 - A unilateral edit to DECISIONS.md without companion PRD update = REFUSED
 - Companion documents (BRIEF, ROADMAP) update in the same change
+
+---
+
+## Amendments made on 2026-06-01 (Approval Gate sign-off — Phase 1 close)
+
+> Source: `plans/260601-1712-shannon-consolidation/APPROVAL-SIGNED.md`. Five decisions signed by the user. Two reverse prior commitments (surfaced with original-decision + audit-reasoning + tradeoff, explicitly chosen — authorized reversals, not silent drift). Recorded here per the decision-guard "document drift" rule.
+
+### D5 — SUPERSEDED (version reconciliation)
+
+D5 originally said "keep `shannon` name; start at v0.x (0.1.0, NOT v1.0.0)." That is now **superseded**.
+
+- **Reality:** Shannon shipped as v1.0.0 (tag + manifest + commit `1e39c61`). The v1.0.0 tag is the truth — it is the actual first stable release.
+- **New call:** the v1.x line is canonical. This consolidation edition ships as **v1.1**. The `shannon` name is retained (unchanged from D5).
+- **Implication:** version manifests move to `1.1.0-dev` during the consolidation; v1.0.0 tag/ancestry is never rewritten.
+
+### D6 — Forge restored in v1.1 (reverses the cut-commands deferral)
+
+- **Prior decision:** `.planning/phases/03-commands/cut-commands.md` logged `forge` (the 10-phase Crucible pipeline) as "deliberately deferred to v1.x"; its oracle role was absorbed into critic/reviewer/validator and `cook` (5-phase) was the v1 path.
+- **New call (2026-06-01):** restore the forge 10-phase pipeline **now**, in v1.1. Forge gets its own phase.
+- **Implication:** `cut-commands.md` is amended (forge moves from "deferred" to "restored in v1.1"). Forge-vs-cook recommended-workflow guidance must be clarified to avoid confusion between the two overlapping pipelines.
+
+### D7 — UI runtime re-included as v0.2.0 scope (reverses BRIEF "must NOT do")
+
+- **Prior decision:** BRIEF "What v1 must NOT do" — no server at runtime, don't replace Claude Code, don't compete with IDEs.
+- **New call (2026-06-01):** re-include the React + WebSocket human-in-the-loop approval UI.
+- **Implication:** this is a PRD/BRIEF amendment, not a plan-level change. It lands in a **separate v0.2.0 train AFTER the v1.1 consolidation edition ships**. The BRIEF "must NOT do" list is amended to carve out the **opt-in approval UI**, which **MUST stay non-required** so the "function with zero MCPs / no required server" install promise still holds for users who do not enable it.
+
+### D8 — Adopt native `skills:` frontmatter; retire `_built/` + `build/embed-skills.py` (reverses D1 mechanism, preserves D1 intent)
+
+- **Prior decision:** D1 (Architecture C) embedded sub-agent skills via a build step producing `agents/<name>/_built/` bundles.
+- **New call (2026-06-01):** adopt the official native `skills:` frontmatter field on agents — it does exactly what `_built/` did — and retire `_built/` + `build/embed-skills.py`.
+- **Implication:** D1's intent is preserved (agents carry skills, cannot fail to load); only the mechanism changes. Change is **parity-gated** in Phase 2 Part B — a B0 parity preflight protects each cascade's `references/` before any deletion; Hybrid-fallback keeps `_built/` for cascade-heavy agents if native parity is not proven.
+
+### D9 — Add `researcher` agent (native-`skills:` preloads research set; no reversal)
+
+- **Finding:** the Phase 1 audit found 9/9 agents skill-loaded but NO dedicated research specialist; research piggybacked on the executor.
+- **New call (2026-06-01):** add a `researcher` agent that preloads the research set via native `skills:` frontmatter (embeds `library-docs-fetch` + `codebase-analysis` + `observability-report`); `commands/research.md` is re-pointed to it.
