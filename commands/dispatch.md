@@ -24,7 +24,7 @@ Sequential chain. Each step's output informs the next.
 
 1. Parse task list.
 2. For task 1..N:
-   - Spawn `Task: executor` (or task-specified agent).
+   - Spawn `Task: shannon:executor` (or task-specified agent).
    - Wait for completion.
    - Invoke `Skill: judge` on output → PASS/FAIL/NEEDS_REVISION.
    - PASS → proceed. FAIL → halt. NEEDS_REVISION → re-dispatch with feedback (max 2 rounds).
@@ -34,18 +34,18 @@ Sequential chain. Each step's output informs the next.
 Parallel fan-out. Tasks must be independent (file-ownership separated).
 
 1. Group tasks into batches of `--max-parallel`.
-2. Per batch: spawn all `Task: executor` in parallel via **single message with multiple Task tool calls** (per `Skill: dispatch-parallel`).
+2. Per batch: spawn all `Task: shannon:executor` in parallel via **single message with multiple Task tool calls** (per `Skill: dispatch-parallel`).
 3. Invoke `Skill: judge` on each output.
-4. After all batches: `Task: meta-judge` reads ALL outputs → cross-subagent consistency check → final verdict.
+4. After all batches: `Task: shannon:meta-judge` reads ALL outputs → cross-subagent consistency check → final verdict.
 5. Aggregate to `reports/dispatch-par-<run-id>.md`.
 
 ### mode=competitive
 N agents attempt the SAME task; judges select the best.
 
-1. Spawn `--candidates` `Task: executor` in parallel; each gets identical task, isolated output dir.
+1. Spawn `--candidates` `Task: shannon:executor` in parallel; each gets identical task, isolated output dir.
 2. Wait for all to complete.
 3. Invoke `Skill: judge` per candidate → individual scores.
-4. Spawn `Task: meta-judge` with `Skill: consensus-engine` → debate-based ranking with cited reasoning.
+4. Spawn `Task: shannon:meta-judge` with `Skill: consensus-engine` → debate-based ranking with cited reasoning.
 5. Promote winning candidate; archive losers under `_rejected/`.
 6. Aggregate to `reports/dispatch-comp-<run-id>.md`.
 
@@ -56,8 +56,8 @@ N agents attempt the SAME task; judges select the best.
 - `Skill: tree-of-thoughts` (competitive mode — branching candidate options)
 - `Skill: judge`
 - `Skill: consensus-engine` (competitive mode)
-- `Task: executor` (workers)
-- `Task: meta-judge` (parallel/competitive synthesis)
+- `Task: shannon:executor` (workers)
+- `Task: shannon:meta-judge` (parallel/competitive synthesis)
 
 ## Iron rules
 

@@ -112,6 +112,22 @@ def main():
             inventory += scan_dir(pdir, "project")
             seen_project.add(str(pdir))
 
+    # 2b. Working-tree plugin (directory-source). If cwd or git root is itself a
+    # plugin (has .claude-plugin/plugin.json + skills/), scan it. Directory-source
+    # plugins read live from their source dir and are NOT copied under
+    # ~/.claude/plugins/, so the section-3 rglob never sees them.
+    seen_plugin_root = set()
+    for base in {cwd, git_root(cwd) or cwd}:
+        pj = base / ".claude-plugin" / "plugin.json"
+        sk = base / "skills"
+        if pj.is_file() and sk.is_dir() and str(base) not in seen_plugin_root:
+            try:
+                pname = json.loads(pj.read_text(encoding="utf-8")).get("name", base.name)
+            except Exception:  # noqa: BLE001
+                pname = base.name
+            inventory += scan_dir(sk, f"plugin:{pname}", namespace=pname)
+            seen_plugin_root.add(str(base))
+
     # 3. Plugins (marketplace + local). Plugin name is the namespace.
     plugins_root = home / ".claude" / "plugins"
     if plugins_root.is_dir():

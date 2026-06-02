@@ -17,7 +17,7 @@ Multi-teammate orchestration. Lead spawns N parallel teammates with file-ownersh
 ## Behavior
 
 1. Parse charter; resolve roles, per-teammate file-ownership globs, dispatch graph.
-2. `Task: team-builder` (lead) reads charter; creates TaskList entries.
+2. `Task: shannon:team-builder` (lead) reads charter; creates TaskList entries.
 3. Lead spawns N teammates via `Task` tool in a SINGLE message (per `Skill: dispatch-parallel`) — each gets IRON-RULE injection via PreToolUse:Task stderr.
 4. Teammates claim tasks by ID (lowest unblocked first); set `owner` + `status=in_progress` via TaskUpdate.
 5. Teammates work within file-ownership glob; cross-glob writes refused.
@@ -27,11 +27,11 @@ Multi-teammate orchestration. Lead spawns N parallel teammates with file-ownersh
 
 ## Skills + agents
 
-- `Task: team-builder` (lead/orchestrator)
+- `Task: shannon:team-builder` (lead/orchestrator)
 - `Skill: team-coordinator` (TaskList synthesis)
 - `Skill: dispatch-parallel` (single-message multi-Task pattern)
 - `Skill: multi-agent-patterns` (charter-driven role definitions)
-- Per teammate: whatever charter specifies — commonly `Task: executor`, `Task: validator`, `Task: reviewer`
+- Per teammate: whatever charter specifies — commonly `Task: shannon:executor`, `Task: shannon:validator`, `Task: shannon:reviewer`
 
 ## Success criteria
 

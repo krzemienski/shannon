@@ -48,3 +48,17 @@ scripts/harness/_logs/
 # Session tool artifacts (not plugin surface)
 .remember/
 .claude/
+
+# Other-plugin sentinels + runtime state (not Shannon plugin surface)
+.anneal/
+.crucible/
+.shannon/
+.understand-anything/
+.serena/
+.in_use/
+.prompts/
+.v7/
+
+# Per-run consolidation evidence + working plans (large; not shipped surface)
+evidence/
+plans/

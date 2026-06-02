@@ -314,5 +314,5 @@ def preconditions_ok() -> tuple[bool, str]:
 - `skills/loop-runner/SKILL.md` — bounded iteration loop with stall detection
 - `skills/functional-validation/SKILL.md` — the validation skill whose proving commands surface through the harness
 - `skills/goal-loop-orchestrator/SKILL.md` — the canonical "transcript-evidence" loop discipline
-- `skills/mcp-builder/SKILL.md` — building Python/Node MCP servers
+- `mcp-builder` — building Python/Node MCP servers
 - `skills/observability-report/SKILL.md` — consuming the `hooks.jsonl` events this harness writes

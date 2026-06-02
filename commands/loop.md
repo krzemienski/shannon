@@ -17,7 +17,7 @@ Iterative {do → verify → reflect} loop. Converges when verify skill PASSes o
 ## Behavior
 
 Each iteration:
-1. **Do** — `Task: executor` attempts goal step with current best understanding.
+1. **Do** — `Task: shannon:executor` attempts goal step with current best understanding.
 2. **Verify** — invoke `Skill: <verify-with>` against the artifact produced this iteration.
 3. **Reflect** — invoke `Skill: reflect`; identify gap; produce next-iteration prompt.
 4. If verify PASS AND `reflect` returns "converged" → exit success.
@@ -29,7 +29,7 @@ State persists under `e2e-evidence/loop-<run-id>/iter-N/` so iterations are insp
 
 - `Skill: loop-runner` (Shannon-specific orchestrator — this command IS the loop runner)
 - `Skill: goal-loop-orchestrator` (goal-condition gating for the convergence check)
-- `Task: executor` (per-iteration do step)
+- `Task: shannon:executor` (per-iteration do step)
 - `Skill: functional-validation` (default verify)
 - `Skill: reflect`
 - `Skill: refusal-discipline` (on max-iter exhaustion)

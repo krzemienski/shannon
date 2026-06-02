@@ -132,10 +132,10 @@ The orchestrator does NOT auto-escalate or auto-rewrite the condition. Stall = s
 ## Cross-references
 
 - `skills/goal-condition-architect/SKILL.md` — produces the condition this loop proves
-- `skills/northstar/SKILL.md` — end-to-end facade
-- `skills/goal-workflow/SKILL.md` — input → condition → run pipeline; ships `/goalify`
-- `skills/goal-orchestration/SKILL.md` — deeper orchestration patterns
-- `skills/condition-library/SKILL.md` — reusable conditions
+- `northstar` — end-to-end facade
+- `goal-workflow` — input → condition → run pipeline; ships `/goalify`
+- `goal-orchestration` — deeper orchestration patterns
+- `condition-library` — reusable conditions
 - `skills/autopilot-runner/SKILL.md` — Shannon's broader multi-phase analog
 - `skills/loop-runner/SKILL.md` — Shannon's bounded loop primitive
 - `skills/python-agent-sdk/SKILL.md` — SDK harness for headless invocation
@@ -277,8 +277,8 @@ Don't run two `/goal`s in the same Claude Code session. They will fight over the
 
 - `skills/goal-loop-orchestrator/SKILL.md` — the loop this skill operates
 - `skills/goal-condition-architect/SKILL.md` — the input shape
-- `skills/goal-engineering/SKILL.md` — depth on condition craft
-- `skills/condition-library/SKILL.md` — reusable conditions
+- `goal-engineering` — depth on condition craft
+- `condition-library` — reusable conditions
 - `skills/observability-report/SKILL.md` — log-reading for completed runs
 - `skills/python-agent-sdk/SKILL.md` — programmatic invocation
 
@@ -357,8 +357,8 @@ Runs stages 1-3. After the condition is approved (one-prompt confirmation if `--
 
 - `skills/goal-condition-architect/SKILL.md` — stage 2 delegate
 - `skills/goal-loop-orchestrator/SKILL.md` — stage 3 delegate
-- `skills/northstar/SKILL.md` — alternative end-to-end facade with slightly different posture
-- `skills/goal-engineering/SKILL.md` — patterns for crafting goal conditions
-- `skills/condition-library/SKILL.md` — reusable condition templates
-- `skills/deep-interview/SKILL.md` — front-end when input is too vague
+- `northstar` — alternative end-to-end facade with slightly different posture
+- `goal-engineering` — patterns for crafting goal conditions
+- `condition-library` — reusable condition templates
+- `deep-interview` (oh-my-claudecode plugin) — front-end when input is too vague
 - `skills/autopilot-runner/SKILL.md` — Shannon's multi-phase analog

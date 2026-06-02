@@ -123,7 +123,7 @@ If it sounds like corporate PM theater, delete it.
 
 ### transcript_provable_success_criteria
 
-Every success criterion must be demonstrable from the executor's own transcript (per northstar/goal-engineering). Use the 4-part recipe (cross-link: `skills/goal-engineering/SKILL.md`):
+Every success criterion must be demonstrable from the executor's own transcript (per northstar/goal-engineering). Use the 4-part recipe (cross-link: `goal-engineering`):
 
 - **End state** — one measurable outcome.
 - **Check** — exact command producing proof.
@@ -244,15 +244,15 @@ Example (BAD — rejected by plan-author):
 
 ## Cross-references
 
-- `skills/goal-engineering/SKILL.md` — Success Criteria 4-part recipe authority.
+- `goal-engineering` — Success Criteria 4-part recipe authority.
 - `skills/interview-framework/SKILL.md` — pre-plan intake for GREENFIELD.
-- `skills/plan-deepen/SKILL.md` — one-shot hardening of an existing plan.
+- `/shannon:plan --mode deep` — one-shot hardening of an existing plan (the plan-deepen mode, folded into the `deep` mode).
 - `skills/plan-author/SKILL.md` — author↔red-teamer iteration loop.
 - `skills/plan-author/SKILL.md` — multi-perspective consensus.
 - `skills/plan-author/SKILL.md` — gate injection (called by `/shannon:plan-deep`).
 - `skills/library-docs-fetch/SKILL.md` — standards-to-skill mapping (Phase 0).
 - `skills/library-docs-fetch/SKILL.md` — documentation research mode (invoked from `/shannon:scope` or `/shannon:research`).
-- `skills/prd-clarity/SKILL.md` — 100-point rubric before `/shannon:prd` emission.
+- `prd-clarity` — 100-point rubric before `/shannon:prd` emission.
 
 
 ---
@@ -275,11 +275,11 @@ Three distinct hardening modes — pick the one matching your need:
 | Skill | Mode | Use when |
 |---|---|---|
 | `plan-author` (this) | **Iteration loop** (author ↔ red-teamer for N rounds) | Plan needs iterative tempering; max-rounds budget known |
-| `plan-deepen` (GM-044) | **One-shot hardening** of an existing plan with selective focus | Plan exists, just stress-test it once |
+| `/shannon:plan --mode deep` | **One-shot hardening** of an existing plan with selective focus | Plan exists, just stress-test it once |
 | `plan-author` | **Parallel candidates** with distinct lenses + tournament-judge | Multiple viable approaches need head-to-head comparison |
 
 Cross-links:
-- `skills/plan-deepen/SKILL.md` — one-shot, confidence-scored, selective deepening.
+- `/shannon:plan --mode deep` — one-shot, confidence-scored, selective deepening.
 - `skills/plan-author/SKILL.md` — multi-candidate consensus.
 - `skills/gepetto/SKILL.md` — optional cross-model external review (Gemini + Codex) bolt-on for high-stakes rounds.
 
@@ -331,7 +331,7 @@ Findings from external reviews are merged into the next round's critique. Each e
 ## When NOT to use
 
 - Decision needs multiple distinct lenses simultaneously → use `/shannon:plan-author`.
-- Plan already exists, only needs one-shot stress-test → use `/shannon:plan-deep` (skills/plan-deepen).
+- Plan already exists, only needs one-shot stress-test → use `/shannon:plan --mode deep`.
 - Small change with obvious plan → use `/shannon:plan`.
 
 ## Iron rules
@@ -897,7 +897,7 @@ Planning skill succeeds when:
 
 Backs the gate-injection step of `/shannon:plan-deep` and the planning phase of `/shannon:validate`. Adopts anthropic-skills/plan-author's evidence-compounding regression model + mock-detection preamble + platform-detection table, while preserving Shannon's iron rule (no "tests pass" gates) and gate-in-phase canonical structure.
 
-Sibling: `skills/transform-validation-prompt/SKILL.md` retrofits gates into an external/raw prompt that didn't ship with them.
+Sibling: `transform-validation-prompt` retrofits gates into an external/raw prompt that didn't ship with them.
 
 ## Mock-detection preamble
 
@@ -1050,7 +1050,7 @@ plans/<date>-<slug>/
 
 ## Cross-references
 
-- `skills/transform-validation-prompt/SKILL.md` — sibling, retrofits gates into external prompts.
+- `transform-validation-prompt` — sibling, retrofits gates into external prompts.
 - `skills/no-fakes-discipline/SKILL.md` — mock-detection iron rule authority.
 - `skills/functional-validation/SKILL.md` — default reviewer.
 - `skills/visual-inspection/SKILL.md` — UI evidence reviewer.

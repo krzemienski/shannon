@@ -125,10 +125,10 @@ If the input is too vague to produce a transcript-provable condition, ask ONE cl
 ## Cross-references
 
 - `skills/goal-loop-orchestrator/SKILL.md` — runs the condition this skill produces
-- `skills/northstar/SKILL.md` — end-to-end facade combining this + the loop orchestrator
-- `skills/goal-workflow/SKILL.md` — input → condition → run pipeline
-- `skills/goal-engineering/SKILL.md` — deeper patterns + condition library cross-reference
-- `skills/condition-library/SKILL.md` — reusable condition templates per project type
+- `northstar` — end-to-end facade combining this + the loop orchestrator
+- `goal-workflow` — input → condition → run pipeline
+- `goal-engineering` — deeper patterns + condition library cross-reference
+- `condition-library` — reusable condition templates per project type
 - `skills/autopilot-runner/SKILL.md` — Shannon-native consumer of well-formed conditions
 - `skills/loop-runner/SKILL.md` — bounded loop that proves against these conditions
 
@@ -200,12 +200,12 @@ If yes → execute the five-step pipeline. If no → return to whatever the user
 
 - `skills/goal-condition-architect/SKILL.md` — step 2 delegate
 - `skills/goal-loop-orchestrator/SKILL.md` — step 5 delegate
-- `skills/goal-workflow/SKILL.md` — slightly more conservative facade with `/shannon:goalify`
-- `skills/goal-engineering/SKILL.md` — patterns
-- `skills/goal-orchestration/SKILL.md` — orchestration patterns
-- `skills/condition-library/SKILL.md` — reusable conditions
+- `goal-workflow` — slightly more conservative facade with `/shannon:goalify`
+- `goal-engineering` — patterns
+- `goal-orchestration` — orchestration patterns
+- `condition-library` — reusable conditions
 - `skills/autopilot-runner/SKILL.md` — Shannon-native multi-phase analog
-- `skills/deep-interview/SKILL.md` — escalate here when too vague
+- `deep-interview` (oh-my-claudecode plugin) — escalate here when too vague
 
 ## Absorbed from `goal-engineering`
 
@@ -325,8 +325,8 @@ If the end-state can't be reduced to 3-7 transcript-parseable commands, the work
 
 - `skills/goal-condition-architect/SKILL.md` — the procedure
 - `skills/goal-loop-orchestrator/SKILL.md` — the executor
-- `skills/condition-library/SKILL.md` — reusable templates
-- `skills/northstar/SKILL.md` + `skills/goal-workflow/SKILL.md` — facades
+- `condition-library` — reusable templates
+- `northstar` + `goal-workflow` — facades
 - `skills/no-fakes-discipline/SKILL.md` — reinforces "no mocks" constraint
 
 ## Absorbed from `condition-library`
@@ -467,6 +467,6 @@ without overriding the validation gate, or stop after 30 turns.
 ## Cross-references
 
 - `skills/goal-condition-architect/SKILL.md` — runs the harden pass on these templates
-- `skills/goal-engineering/SKILL.md` — patterns + attack catalog
+- `goal-engineering` — patterns + attack catalog
 - `skills/goal-loop-orchestrator/SKILL.md` — executes the resulting condition
-- `skills/northstar/SKILL.md` + `skills/goal-workflow/SKILL.md` — facades that compose this with the architect and the orchestrator
+- `northstar` + `goal-workflow` — facades that compose this with the architect and the orchestrator

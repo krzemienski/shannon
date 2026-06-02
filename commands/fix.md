@@ -19,7 +19,7 @@ For attempt 1..3:
 
 1. **Scout**: read the bug evidence. Grep codebase for surface area (`Skill: codebase-analysis`).
 2. **Debug**: invoke `Skill: root-cause-tracing`. Output: a single root-cause hypothesis with cited file:line evidence.
-3. **Implement**: dispatch `Task: executor` with a minimal fix targeting that root cause only. No drive-by improvements.
+3. **Implement**: dispatch `Task: shannon:executor` with a minimal fix targeting that root cause only. No drive-by improvements.
 4. **Revalidate**: invoke `Skill: functional-validation` against the journey that originally exposed the bug.
 5. Evidence per attempt under `e2e-evidence/fix-<run-id>/attempt-<N>/`. Never reuse evidence across attempts.
 6. If revalidate PASSes → exit success.
@@ -30,7 +30,7 @@ For attempt 1..3:
 
 - `Skill: codebase-analysis` (scout)
 - `Skill: root-cause-tracing` (debug)
-- `Task: executor` (implement)
+- `Task: shannon:executor` (implement)
 - `Skill: functional-validation` (revalidate)
 - `Skill: refusal-discipline` (on 3-strike exhaustion)
 - `Skill: no-fakes-discipline` (Iron Rule throughout)

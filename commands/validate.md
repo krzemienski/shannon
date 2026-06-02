@@ -20,16 +20,16 @@ End-to-end functional validation. Real system in → cited PASS/FAIL verdict out
 
 1. Platform detection: read project markers (Xcode files, `package.json`, `manage.py`, `Cargo.toml`, OpenAPI specs). Override with `--platform`.
 2. Invoke `Skill: plan-author` (validation-gate mode) — output: `e2e-evidence/<run-id>/validation-plan.md` listing journeys with PASS criteria per step.
-3. Dispatch `Task: validator` (single mode) or `Task: team-validator` (consensus mode).
+3. Dispatch `Task: shannon:validator` (single mode) or `Task: shannon:team-validator` (consensus mode).
 4. Per journey: capture evidence to `e2e-evidence/<run-id>/<journey-slug>/step-NN-<action>-<result>.<ext>`. Every evidence file must be non-empty.
 5. `Skill: evidence-gate` per journey — refuses missing/empty evidence.
 6. After all journeys: validator writes per-journey verdict; lead writes `e2e-evidence/<run-id>/report.md`.
-7. `--mode consensus`: `Task: team-validator` spawns 3 isolated `Task: validator` instances; `Skill: consensus-engine` synthesizes confidence-scored verdict.
+7. `--mode consensus`: `Task: shannon:team-validator` spawns 3 isolated `Task: shannon:validator` instances; `Skill: consensus-engine` synthesizes confidence-scored verdict.
 
 ## Skills + agents
 
-- `Task: validator` (single mode)
-- `Task: team-validator` (consensus mode)
+- `Task: shannon:validator` (single mode)
+- `Task: shannon:team-validator` (consensus mode)
 - `Skill: functional-validation`
 - `Skill: evidence-gate`
 - `Skill: evidence-indexing`

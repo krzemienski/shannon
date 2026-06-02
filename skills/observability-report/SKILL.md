@@ -154,8 +154,8 @@ Off by default; opt-in for production environments.
 - `skills/autopilot-runner/SKILL.md` — produces `.shannon/state/autopilot-*.txt`
 - `skills/goal-loop-orchestrator/SKILL.md` — produces `~/.claude/state/goal/<run-id>/state.json`
 - `skills/session-handoff/SKILL.md` — surfaces in /shannon:retro
-- `skills/consolidate-memory/SKILL.md` — surfaces consolidation reports
-- `skills/lesson-learned/SKILL.md` — git-correlation pattern source
+- `consolidate-memory` — surfaces consolidation reports
+- `lesson-learned` (oh-my-claudecode plugin) — git-correlation pattern source
 
 ## References
 

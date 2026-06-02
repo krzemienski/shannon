@@ -1,8 +1,6 @@
 id: pillar-05-self-instrumented
 pillar: self-instrumented
 goal: /shannon:doctor exits 0 with summary.mismatches == 0 on a clean v1 install.
-setup:
-- python3 build/embed-skills.py
 action:
   type: shell
   command: python3 scripts/doctor.py

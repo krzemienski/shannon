@@ -123,11 +123,11 @@ Critique uses a stricter posture and may surface gaps reflect-self glossed over.
 
 - `skills/loop-runner/SKILL.md` — invokes this as the inner reflection step
 - `skills/memorize/SKILL.md` — recurrence-promotion target
-- `skills/critique/SKILL.md` — adversarial counterpart (mode=critique)
-- `skills/deep-interview/SKILL.md` — escalate here when reflect-self under-yields
+- `critique` (oh-my-claudecode plugin) — adversarial counterpart (mode=critique)
+- `deep-interview` (oh-my-claudecode plugin) — escalate here when reflect-self under-yields
 - `skills/goal-loop-orchestrator/SKILL.md` — transcript-proof discipline source
-- `skills/lesson-learned/SKILL.md` — reflective-tone source
-- `skills/reflexion/SKILL.md` — broader self-reflection doctrine
+- `lesson-learned` (oh-my-claudecode plugin) — reflective-tone source
+- `reflexion` — broader self-reflection doctrine
 
 ## References
 

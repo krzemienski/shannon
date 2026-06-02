@@ -156,8 +156,8 @@ The prior memory file stays on disk (audit trail). The new file is the active on
 ## Cross-references
 
 - `skills/reflect/SKILL.md` — recurrence-promotion source (invokes this)
-- `skills/consolidate-memory/SKILL.md` — periodic maintenance counterpart
-- `skills/learner/SKILL.md` — three-question gate source
+- `consolidate-memory` — periodic maintenance counterpart
+- `learner` (oh-my-claudecode plugin) — three-question gate source
 - `skills/session-handoff/SKILL.md` — different use-case (state vs pattern); secret-scan shared
 
 ## References
@@ -294,7 +294,7 @@ A consolidation report at `reports/memory-consolidation-<date>.md`:
 
 - `skills/memorize/SKILL.md` — creation primitive (this is its maintenance counterpart)
 - `skills/session-handoff/SKILL.md` — handoff-staleness pass works on its outputs
-- `skills/learner/SKILL.md` — quality-gate source
+- `learner` (oh-my-claudecode plugin) — quality-gate source
 - `skills/observability-report/SKILL.md` — surfaces consolidation reports in /shannon:retro
 - `skills/reflect/SKILL.md` — when reflection sees repeated gap, may propose consolidation
 

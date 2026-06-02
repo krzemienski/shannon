@@ -196,7 +196,7 @@ If 3+ red flags trigger, the root cause is "test exists but exercises mocks not 
 
 ## Cross-references
 
-- `skills/trace/SKILL.md` — backward-causality variant for runtime tracing.
+- `trace` — backward-causality variant for runtime tracing.
 - `skills/no-fakes-discipline/SKILL.md` — mock-detection iron rule authority.
 - `skills/plan-author/SKILL.md` — receives the VF task injection.
 - `skills/reflect/SKILL.md` — uses root-cause-tracing on a session's gaps.

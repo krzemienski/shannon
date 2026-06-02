@@ -3,7 +3,7 @@
   "runner": "sdk",
   "benchmark_count": 5,
   "pillar_coverage": {
-    "embedded-sub-agent-skills": [
+    "preloaded-sub-agent-skills": [
       "pillar-01-embedded-skills"
     ],
     "orchestration-parallel-dispatch": [

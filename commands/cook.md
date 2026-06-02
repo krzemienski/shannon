@@ -20,9 +20,9 @@ End-to-end implementation runner. Plan if needed → execute against real system
 
 1. **Pre-flight (default; non-skippable on non-empty repos):** auto-invoke `/shannon:scope --task "<positional arg>"` to run codebase-analysis + skill-inventory + observability-report in parallel. Skip ONLY if `--greenfield` is passed. The scope-report becomes the planner's context.
 2. Argument classification: if arg resolves to filesystem path → read as plan; else treat as brief.
-3. If brief AND not `--auto`: invoke `Task: planner` with the scope-report as context → emits `plans/<date>-<slug>/{plan.md, phase-NN-*.md}`. Every plan task cites a specific file or a specific skill from the scope-report.
+3. If brief AND not `--auto`: invoke `Task: shannon:planner` with the scope-report as context → emits `plans/<date>-<slug>/{plan.md, phase-NN-*.md}`. Every plan task cites a specific file or a specific skill from the scope-report.
 4. If brief AND `--auto`: skip planner; synthesize a one-shot phase prompt inline.
-5. Spawn `Task: executor` with phase plan + IRON-RULE injection.
+5. Spawn `Task: shannon:executor` with phase plan + IRON-RULE injection.
 6. After executor completes each phase: invoke `Skill: functional-validation` against the affected surface (unless `--no-validate`).
 7. Before marking complete: invoke `Skill: evidence-gate` — 5-question checklist must all answer yes.
 8. Before marking complete: invoke `Skill: completion-gate` — mechanical criteria check.
@@ -30,9 +30,9 @@ End-to-end implementation runner. Plan if needed → execute against real system
 
 ## Skills + agents
 
-- `Task: planner` (unless `--auto` or path arg)
-- `Task: executor` (always)
-- `Task: team-qa` (per-phase QA cycle — build/lint/test loops with stall detection)
+- `Task: shannon:planner` (unless `--auto` or path arg)
+- `Task: shannon:executor` (always)
+- `Task: shannon:team-qa` (per-phase QA cycle — build/lint/test loops with stall detection)
 - `Skill: plan-author` (planner's embedded skill)
 - `Skill: functional-validation`
 - `Skill: evidence-gate`

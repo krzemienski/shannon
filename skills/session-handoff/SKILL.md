@@ -139,7 +139,7 @@ Handoffs older than 7 days print a warning when read. Older than 30 days are fla
 ## Cross-references
 
 - `skills/memorize/SKILL.md` — for atomic patterns; handoffs are session-state, memories are patterns
-- `skills/consolidate-memory/SKILL.md` — periodic staleness pruning
+- `consolidate-memory` — periodic staleness pruning
 - `skills/autopilot-runner/SKILL.md` — produces handoffs on context-near-exhaustion
 - `skills/loop-runner/SKILL.md` — same
 - `skills/python-agent-sdk/SKILL.md` — `session_id` persistence used by Resume protocol

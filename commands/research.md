@@ -17,17 +17,17 @@ Topic research with parallel sub-agent fan-out. Standalone command (not a subcom
 ## Behavior
 
 1. Decompose topic into sub-topics (3-5 typically) via `Skill: codebase-analysis` (decomposition mode).
-2. Spawn parallel sub-agents via `Task: team-builder` (orchestrator). team-builder uses `Skill: dispatch-parallel` to spawn N `Task: executor` workers in a single message — one per sub-topic.
-3. Each worker:
-   - Uses `WebFetch` and `context7` MCP for primary sources.
+2. Spawn parallel sub-agents via `Task: shannon:team-builder` (orchestrator). team-builder uses `Skill: dispatch-parallel` to spawn N `Task: shannon:researcher` workers in a single message — one per sub-topic.
+3. Each `researcher` worker (research set preloaded via its `skills:` frontmatter — `library-docs-fetch` + `codebase-analysis` + `observability-report`):
+   - Surveys internal code first, then fetches external primary sources (`WebFetch` / `context7` MCP).
    - Writes findings to `research/<topic-slug>/researcher-<N>.md` with inline citations.
-4. After workers complete, `Task: planner` reads all reports; writes `research/<topic-slug>/SUMMARY.md` synthesizing findings with cross-citations.
+4. After workers complete, `Task: shannon:planner` reads all reports; writes `research/<topic-slug>/SUMMARY.md` synthesizing findings with cross-citations.
 
 ## Skills + agents
 
-- `Task: team-builder` (parallel dispatch orchestrator)
-- `Task: executor` (research workers)
-- `Task: planner` (synthesis)
+- `Task: shannon:team-builder` (parallel dispatch orchestrator)
+- `Task: shannon:researcher` (research workers — research set preloaded via skills: frontmatter)
+- `Task: shannon:planner` (synthesis)
 - `Skill: dispatch-parallel`
 - `Skill: codebase-analysis` (decomposition)
 - `Skill: plan-author` (synthesis)

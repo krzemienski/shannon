@@ -1,21 +1,18 @@
 id: pillar-01-embedded-skills
-pillar: embedded-sub-agent-skills
-goal: 'Architecture C: meta-judge has access to embedded judge SKILL.md content at
-  spawn time without Skill: round-trip.'
-setup:
-- python3 build/embed-skills.py
-- python3 build/verify-build.py
+pillar: preloaded-sub-agent-skills
+goal: 'Native skills: frontmatter — meta-judge has the full judge SKILL.md body
+  preloaded into its startup context at spawn time without a Skill: round-trip.'
 action:
   type: spawn-subagent
-  subagent_type: meta-judge
+  subagent_type: shannon:meta-judge
   prompt: Generate a rubric YAML for evaluating a simple TypeScript function. Cite
-    the embedded judge skill's Iron Rule discipline as part of your response.
+    the preloaded judge skill's Iron Rule discipline as part of your response.
 expected_evidence:
 - transcript contains rubric YAML
-- transcript contains text from agents/meta-judge/AGENT.md embedded judge SKILL.md
-  (e.g., the Iron Rule line)
+- transcript contains text from the judge SKILL.md body preloaded via the agent's
+  native skills frontmatter field — for example, the Iron Rule line
 gate_criteria:
 - subagent spawn succeeded (no error in transcript)
 - rubric YAML present (criteria + weights structure)
-- embedded-content marker present (cite the specific phrase from judge SKILL.md)
+- preloaded-content marker present (cite the specific phrase from judge SKILL.md)
 runner: both

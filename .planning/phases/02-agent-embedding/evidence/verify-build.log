@@ -14,42 +14,48 @@ team-validator: declared=5 on_disk=5 matched=5
 validator: declared=4 on_disk=4 matched=4
 
 ## Total checks: 35
-## Mismatches: 0
+## Mismatches: 3
 
 ## Per-skill checks (sample)
 
   critic/judge: OK (SKILL.md ✓, refs ✓ [0 refs])
   critic/evidence-gate: OK (SKILL.md ✓, refs ✓ [2 refs])
-  executor/functional-validation: OK (SKILL.md ✓, refs ✓ [11 refs])
-  executor/reflect: OK (SKILL.md ✓, refs ✓ [1 refs])
-  executor/codebase-analysis: OK (SKILL.md ✓, refs ✓ [0 refs])
   executor/dispatch-parallel: OK (SKILL.md ✓, refs ✓ [0 refs])
-  meta-judge/judge: OK (SKILL.md ✓, refs ✓ [0 refs])
+  executor/codebase-analysis: OK (SKILL.md ✓, refs ✓ [0 refs])
+  executor/reflect: OK (SKILL.md ✓, refs ✓ [1 refs])
+  executor/functional-validation: OK (SKILL.md ✓, refs ✓ [11 refs])
   meta-judge/consensus-engine: OK (SKILL.md ✓, refs ✓ [0 refs])
-  planner/spec-workflow: OK (SKILL.md ✓, refs ✓ [1 refs])
-  planner/interview-framework: OK (SKILL.md ✓, refs ✓ [2 refs])
-  planner/library-docs-fetch: OK (SKILL.md ✓, refs ✓ [0 refs])
-  planner/create-meta-prompts: OK (SKILL.md ✓, refs ✓ [11 refs])
-  planner/skill-inventory: OK (SKILL.md ✓, refs ✓ [0 refs])
-  planner/plan-author: OK (SKILL.md ✓, refs ✓ [12 refs])
-  planner/goal-condition-architect: OK (SKILL.md ✓, refs ✓ [0 refs])
+  meta-judge/judge: OK (SKILL.md ✓, refs ✓ [0 refs])
   planner/codebase-analysis: OK (SKILL.md ✓, refs ✓ [0 refs])
-  reviewer/root-cause-tracing: OK (SKILL.md ✓, refs ✓ [0 refs])
+  planner/goal-condition-architect: OK (SKILL.md ✓, refs ✓ [0 refs])
+  planner/plan-author: OK (SKILL.md ✓, refs ✓ [12 refs])
+  planner/create-meta-prompts: OK (SKILL.md ✓, refs ✓ [11 refs])
+  planner/interview-framework: OK (SKILL.md ✓, refs ✓ [2 refs])
+  planner/spec-workflow: OK (SKILL.md ✓, refs ✓ [1 refs])
+  planner/skill-inventory: OK (SKILL.md ✓, refs ✓ [0 refs])
+  planner/library-docs-fetch: OK (SKILL.md ✓, refs ✓ [0 refs])
   reviewer/judge: OK (SKILL.md ✓, refs ✓ [0 refs])
   reviewer/codebase-analysis: OK (SKILL.md ✓, refs ✓ [0 refs])
-  team-builder/multi-agent-patterns: OK (SKILL.md ✓, refs ✓ [0 refs])
+  reviewer/root-cause-tracing: OK (SKILL.md ✓, refs ✓ [0 refs])
   team-builder/dispatch-parallel: OK (SKILL.md ✓, refs ✓ [0 refs])
+  team-builder/multi-agent-patterns: OK (SKILL.md ✓, refs ✓ [0 refs])
   team-builder/team-coordinator: OK (SKILL.md ✓, refs ✓ [0 refs])
-  team-qa/functional-validation: OK (SKILL.md ✓, refs ✓ [11 refs])
   team-qa/no-fakes-discipline: OK (SKILL.md ✓, refs ✓ [0 refs])
-  team-qa/completion-gate: OK (SKILL.md ✓, refs ✓ [1 refs])
   team-qa/evidence-gate: OK (SKILL.md ✓, refs ✓ [2 refs])
+  team-qa/functional-validation: OK (SKILL.md ✓, refs ✓ [11 refs])
+  team-qa/completion-gate: OK (SKILL.md ✓, refs ✓ [1 refs])
+  team-validator/judge: OK (SKILL.md ✓, refs ✓ [0 refs])
   team-validator/functional-validation: OK (SKILL.md ✓, refs ✓ [11 refs])
+  team-validator/full-functional-audit: OK (SKILL.md ✓, refs ✓ [9 refs])
   team-validator/visual-inspection: OK (SKILL.md ✓, refs ✓ [3 refs])
   team-validator/consensus-engine: OK (SKILL.md ✓, refs ✓ [0 refs])
-  team-validator/judge: OK (SKILL.md ✓, refs ✓ [0 refs])
-  team-validator/full-functional-audit: OK (SKILL.md ✓, refs ✓ [9 refs])
-  validator/functional-validation: OK (SKILL.md ✓, refs ✓ [11 refs])
-  validator/refusal-discipline: OK (SKILL.md ✓, refs ✓ [0 refs])
-  validator/evidence-gate: OK (SKILL.md ✓, refs ✓ [2 refs])
   validator/evidence-indexing: OK (SKILL.md ✓, refs ✓ [0 refs])
+  validator/refusal-discipline: OK (SKILL.md ✓, refs ✓ [0 refs])
+  validator/functional-validation: OK (SKILL.md ✓, refs ✓ [11 refs])
+  validator/evidence-gate: OK (SKILL.md ✓, refs ✓ [2 refs])
+
+## Mismatches
+
+- executor/dispatch-parallel: SKILL.md content drift between built and canonical
+- team-builder/dispatch-parallel: SKILL.md content drift between built and canonical
+- team-builder/multi-agent-patterns: SKILL.md content drift between built and canonical

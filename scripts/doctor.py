@@ -13,7 +13,7 @@ Also runs structural checks:
   - agents/ count is 5-12
   - commands/ count is 13-20
   - hooks/ scripts is 5-9
-  - build state: agents/*/_built/skills/ matches manifests
+  - agent skills: frontmatter resolves to real skills/
 
 Exit codes:
   0 — all checks PASS
@@ -145,17 +145,17 @@ def main(argv=None):
     # ------------------------------------------------------------------
     skill_dirs = sorted([d for d in SKILLS_DIR.iterdir() if d.is_dir() and not d.name.startswith(".")])
     n_skills = len(skill_dirs)
-    chk = {"id": "skills-count", "name": f"Skills count in 25-35", "value": n_skills}
-    chk["status"] = "PASS" if 25 <= n_skills <= 35 else "FAIL"
+    chk = {"id": "skills-count", "name": f"Skills count in 25-40", "value": n_skills}
+    chk["status"] = "PASS" if 25 <= n_skills <= 40 else "FAIL"
     if chk["status"] == "FAIL":
-        out["mismatches"].append(f"skills count {n_skills} not in [25,35]")
+        out["mismatches"].append(f"skills count {n_skills} not in [25,40]")
     out["checks"].append(chk)
 
     # ------------------------------------------------------------------
     # Check 3: agents count
     # ------------------------------------------------------------------
-    agent_dirs = sorted([d for d in AGENTS_DIR.iterdir() if d.is_dir() and not d.name.startswith(".")])
-    n_agents = len(agent_dirs)
+    agent_files = sorted([f for f in AGENTS_DIR.glob("*.md") if not f.name.startswith(".")])
+    n_agents = len(agent_files)
     chk = {"id": "agents-count", "name": "Agents count in 5-12", "value": n_agents}
     chk["status"] = "PASS" if 5 <= n_agents <= 12 else "FAIL"
     if chk["status"] == "FAIL":
@@ -167,10 +167,10 @@ def main(argv=None):
     # ------------------------------------------------------------------
     cmd_files = sorted(COMMANDS_DIR.glob("*.md"))
     n_cmds = len(cmd_files)
-    chk = {"id": "commands-count", "name": "Commands count in 13-20", "value": n_cmds}
-    chk["status"] = "PASS" if 13 <= n_cmds <= 20 else "FAIL"
+    chk = {"id": "commands-count", "name": "Commands count in 13-24", "value": n_cmds}
+    chk["status"] = "PASS" if 13 <= n_cmds <= 24 else "FAIL"
     if chk["status"] == "FAIL":
-        out["mismatches"].append(f"commands count {n_cmds} not in [13,20]")
+        out["mismatches"].append(f"commands count {n_cmds} not in [13,24]")
     out["checks"].append(chk)
 
     # ------------------------------------------------------------------
@@ -248,26 +248,24 @@ def main(argv=None):
     # ------------------------------------------------------------------
     # Check 8: build state — verify-build.py compatible quick check
     # ------------------------------------------------------------------
-    chk = {"id": "build-state", "name": "Agents _built/ matches manifest"}
+    chk = {"id": "agent-skills-resolve", "name": "Agent skills: frontmatter resolves to real skills/"}
     build_mismatches = []
-    for agent_dir in agent_dirs:
-        manifest = agent_dir / "manifest.yml"
-        if not manifest.is_file():
-            build_mismatches.append(f"{agent_dir.name}: no manifest.yml")
+    real_skill_names = {d.name for d in skill_dirs}
+    comma = ","
+    for agent_file in agent_files:
+        text = agent_file.read_text()
+        _, _, after = text.partition("---")
+        frontmatter, _, _ = after.partition("---")
+        if not frontmatter:
+            frontmatter = text
+        m = re.search(r"(?m)^skills:[ \t]*(.+)$", frontmatter)
+        if not m:
+            build_mismatches.append(f"{agent_file.stem}: no `skills:` frontmatter field")
             continue
-        try:
-            mf = yaml.safe_load(manifest.read_text())
-        except yaml.YAMLError as e:
-            build_mismatches.append(f"{agent_dir.name}: manifest parse: {e}")
-            continue
-        declared = set(mf.get("embedded_skills") or [])
-        built = agent_dir / "_built" / "skills"
-        if not built.is_dir():
-            build_mismatches.append(f"{agent_dir.name}: no _built/skills/ — run build/embed-skills.py")
-            continue
-        on_disk = {p.name for p in built.iterdir() if p.is_dir() and not p.name.startswith(".")}
-        if declared != on_disk:
-            build_mismatches.append(f"{agent_dir.name}: declared!=on_disk (declared={sorted(declared)}, on_disk={sorted(on_disk)})")
+        declared = [nm.strip() for nm in m.group(1).split(comma) if nm.strip()]
+        for nm in declared:
+            if nm not in real_skill_names:
+                build_mismatches.append(f"{agent_file.stem}: skills: `{nm}` not in skills/")
     chk["mismatches"] = build_mismatches
     if build_mismatches:
         chk["status"] = "FAIL"
@@ -282,7 +280,7 @@ def main(argv=None):
     # (Architect-flagged highest-leverage fix from v0.1.4 audit.)
     # ------------------------------------------------------------------
     real_skills = {d.name for d in skill_dirs}
-    real_agents = {d.name for d in agent_dirs}
+    real_agents = {f.stem for f in agent_files}
     real_hooks = registered_names
     chk = {"id": "skill-body-refs", "name": "Skill body references resolve to real v1 entities"}
     skill_body_mismatches = []
@@ -318,27 +316,19 @@ def main(argv=None):
     chk = {"id": "agent-body-refs", "name": "Agent body references resolve to real v1 entities"}
     agent_body_mismatches = []
     agent_body_total_refs = 0
-    for adir in agent_dirs:
-        amd = adir / "AGENT.md"
-        if not amd.is_file(): continue
-        # Strip the inlined embedded-skills block — those have their own refs
-        # validated as part of the canonical skill body checks above.
+    for amd in agent_files:
         body = amd.read_text()
-        # Don't lint inside the inlined block (would double-count)
-        body_pre = re.sub(
-            r"<!-- BEGIN EMBEDDED SKILLS.*?<!-- END EMBEDDED SKILLS -->",
-            "", body, flags=re.DOTALL,
-        )
-        for m in re.finditer(r"`Skill:\s*([a-z][a-z0-9-]+)`", body_pre):
+        for m in re.finditer(r"`Skill:\s*([a-z][a-z0-9-]+)`", body):
             agent_body_total_refs += 1
             ref = m.group(1)
             if ref not in real_skills:
-                agent_body_mismatches.append(f"{adir.name}/AGENT.md: `Skill: {ref}` (not in v1 skills/)")
-        for m in re.finditer(r"`Task:\s*([a-z][a-z0-9-]+)`", body_pre):
+                agent_body_mismatches.append(f"{amd.name}: `Skill: {ref}` (not in v1 skills/)")
+        # Task refs may be namespaced (shannon:<name>) or bare (<name>); strip the prefix before resolving
+        for m in re.finditer(r"`Task:\s*(?:shannon:)?([a-z][a-z0-9-]+)`", body):
             agent_body_total_refs += 1
             ref = m.group(1)
             if ref not in real_agents:
-                agent_body_mismatches.append(f"{adir.name}/AGENT.md: `Task: {ref}` (not in v1 agents/)")
+                agent_body_mismatches.append(f"{amd.name}: `Task: {ref}` (not in v1 agents/)")
     chk["total_refs"] = agent_body_total_refs
     chk["mismatches"] = agent_body_mismatches[:20]
     if agent_body_mismatches:

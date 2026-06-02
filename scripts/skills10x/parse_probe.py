@@ -124,8 +124,12 @@ def read_session_skill_invocations(session_jsonl_path):
     """Read a claude --session-id transcript; return list of Skill names invoked.
 
     The transcript is JSONL; Skill activations appear as tool_use blocks with
-    name='Skill' and input.skill=<name>. This is the authoritative activation
-    signal in claude 2.1.x — the debug log no longer emits per-skill dispatch lines.
+    name='Skill'. The skill identifier lives under input.command in current
+    claude builds (e.g. {"command": "shannon:wave-execution"}); older/synthetic
+    payloads used input.skill or input.name. We read all three keys so a real
+    activation is never missed. This JSONL signal is AUTHORITATIVE — the debug
+    log no longer emits per-skill dispatch lines, and the text fallback below
+    (skill_activated_patterns) false-positives on a plain Read/Glob of SKILL.md.
     """
     if not session_jsonl_path:
         return []
@@ -150,7 +154,7 @@ def read_session_skill_invocations(session_jsonl_path):
                 continue
             if block.get("type") == "tool_use" and block.get("name") == "Skill":
                 inp = block.get("input") or {}
-                sk = inp.get("skill") or inp.get("name")
+                sk = inp.get("command") or inp.get("skill") or inp.get("name")
                 if sk:
                     invoked.append(sk)
     return invoked
@@ -199,7 +203,16 @@ def main():
             sk == args.expect or sk == bare or sk.split(":")[-1] == bare
             for sk in invoked
         )
-        act_log = first_match(skill_activated_patterns(args.expect), combined)
+        # AUTHORITATIVE-FIRST activation. When a session JSONL is present we trust
+        # ONLY the real Skill tool_use it records. The text-pattern check
+        # (skill_activated_patterns) matches lines like
+        # `Read .../wave-execution/SKILL.md` that the model emits while EXPLORING
+        # the repo, not while activating the skill. In an in-repo probe that text
+        # signal yields false HEALTHY verdicts (proven 2026-06-02: zero real
+        # activations, two HEALTHY at f1=0.8, each traced to a Glob of the
+        # SKILL.md path). Consult the text signal ONLY when no JSONL exists.
+        have_jsonl = bool(args.session_jsonl) and Path(args.session_jsonl).is_file()
+        act_log = None if have_jsonl else first_match(skill_activated_patterns(args.expect), combined)
         act = act_jsonl or bool(act_log)
         result.update({
             "registered": bool(reg),
@@ -214,6 +227,7 @@ def main():
                 else "HEALTHY"
             ),
             "activation_source": "session_jsonl" if act_jsonl else ("debug_log" if act_log else None),
+            "activation_signal_mode": "jsonl_only" if have_jsonl else "text_pattern",
         })
         if args.raw:
             result["raw"] = {

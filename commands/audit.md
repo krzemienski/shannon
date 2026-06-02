@@ -45,7 +45,7 @@ Read-only audit. Severity-classified findings. Never edits source.
 - Resolve run-id (latest or as provided).
 - Read `e2e-evidence/<run-id>/completion-gate/report.json` for verdict table.
 - Read `e2e-evidence/<run-id>/consensus/report.md` (if exists).
-- Spawn `Task(subagent_type=critic)` to verify each cited evidence file.
+- Spawn `Task(subagent_type=shannon:critic)` to verify each cited evidence file.
 - Output: stdout summary + `reports/completion-<run-id>.md`.
 
 ## Skills + agents
@@ -55,7 +55,7 @@ Read-only audit. Severity-classified findings. Never edits source.
 - `Skill: observability-report` (session)
 - `Skill: completion-gate` (completion-evidence)
 - `Skill: evidence-indexing` (completion-evidence)
-- `Task: critic` (completion-evidence severity audit)
+- `Task: shannon:critic` (completion-evidence severity audit)
 
 ## Success criteria
 

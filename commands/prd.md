@@ -48,7 +48,7 @@ PRD authoring with structured interview. Output: a PRD.md that can feed `/shanno
 - `Skill: interview-framework`
 - `Skill: spec-workflow`
 - `Skill: prompt-engineering-patterns` (interview prompts use the canonical pattern catalog)
-- `Task: planner`
+- `Task: shannon:planner`
 
 ## When to use
 

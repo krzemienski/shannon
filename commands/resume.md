@@ -32,7 +32,7 @@ Resume a halted `/shannon:cook` or `/shannon:autopilot` run. The evidence tree I
 - `Skill: session-handoff` (state-from-disk reader)
 - `Skill: completion-gate` (state inspection)
 - `Skill: evidence-indexing` (per-phase INDEX.md verification)
-- Whichever phase agent the resumed phase requires (e.g., `Task: executor`, `Task: validator`)
+- Whichever phase agent the resumed phase requires (e.g., `Task: shannon:executor`, `Task: shannon:validator`)
 
 ## Iron rules
 

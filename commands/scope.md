@@ -22,7 +22,7 @@ Planning a brownfield change without first surveying the codebase + the availabl
 
 ## Behavior
 
-Three parallel streams via `Task: team-builder` using `Skill: dispatch-parallel` (single-message multi-Task):
+Three parallel streams via `Task: shannon:team-builder` using `Skill: dispatch-parallel` (single-message multi-Task):
 
 ### Stream 1 — `Skill: codebase-analysis` (5 parallel scientists)
 
@@ -46,7 +46,7 @@ Reads recent session JSONL (last 7 days by default) for prior decisions/lessons 
 
 Reads `deps-summary.md` from Stream 1's output. For every third-party library, fetches authoritative docs via `llms.txt` probe → homepage docs → Context7 MCP → GitHub README (in that order). Writes `evidence/<run-id>/library-docs/<library-name>.md` per library + an `INDEX.md`. Refusals are written when no docs source succeeds — no training-data substitution.
 
-After all four streams complete: `Task: planner` synthesizes a `scope-report.md` cross-citing the streams:
+After all four streams complete: `Task: shannon:planner` synthesizes a `scope-report.md` cross-citing the streams:
 
 ```markdown
 # Scope report — <run-id>
@@ -74,8 +74,8 @@ After all four streams complete: `Task: planner` synthesizes a `scope-report.md`
 - `Skill: observability-report` (Stream 3 — session-history context)
 - `Skill: library-docs-fetch` (Stream 4 — third-party documentation fetch)
 - `Skill: dispatch-parallel` (single-message orchestration)
-- `Task: team-builder` (orchestrator)
-- `Task: planner` (synthesis)
+- `Task: shannon:team-builder` (orchestrator)
+- `Task: shannon:planner` (synthesis)
 
 ## Output
 

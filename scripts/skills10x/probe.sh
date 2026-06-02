@@ -93,14 +93,26 @@ START_TS="$(date +%s)"
 # session JSONL keyed by --session-id, which parse_probe.py reads. -p = headless
 # print mode. We DO NOT pass --dangerously-skip-permissions; --allowedTools pins
 # a minimal read-only set so an autonomous probe can never mutate the repo.
+#
+# SUBAGENT CONTAINMENT (safety fix 2026-06-02): --allowedTools bounds the MAIN
+# agent, but a probed AUTONOMY skill (autopilot/ralph/team/cook/loop/dispatch)
+# can instruct the model to spawn Task/Agent subagents whose own tool scope is
+# NOT inherited from the parent allowlist — those workers then run Edit/Write/Bash
+# and mutate real state in an unbounded loop. We therefore explicitly DENY the
+# mutation + subagent-spawn tools. Activation is still measured (debug log +
+# session JSONL Skill tool-use); denying the *consequence* tools does not change
+# whether the skill fires, only whether it can act. PROBE_DENY is overridable but
+# defaults to the full hazardous set.
 SESSION_UUID="$(python3 -c 'import uuid; print(uuid.uuid4())')"
 echo "$SESSION_UUID" > "$OUTDIR/$LABEL.session-id"
+PROBE_DENY="${PROBE_DENY:-Edit Write MultiEdit NotebookEdit Bash Task Agent Workflow Monitor}"
 read -r -d '' RUNNER <<EOF
 claude -p $(printf '%q' "$PROMPT") \
   --debug-file $(printf '%q' "$DEBUG_FILE") \
   --debug skills \
   --session-id $(printf '%q' "$SESSION_UUID") \
   --allowedTools Read Grep Glob \
+  --disallowedTools ${PROBE_DENY} \
   ${EXTRA_ARGS[*]:-} \
   > $(printf '%q' "$STDOUT_FILE") 2>> $(printf '%q' "$DEBUG_FILE")
 echo \$? > $(printf '%q' "$DONE_FILE")
@@ -109,8 +121,11 @@ EOF
 # Launch detached so we can monitor and time it.
 tmux new-session -d -s "$SESSION" "bash -lc $(printf '%q' "$RUNNER")"
 
-# Poll for completion with a hard ceiling (default 300s; override PROBE_TIMEOUT).
-TIMEOUT="${PROBE_TIMEOUT:-300}"
+# Poll for completion with a hard ceiling (default 120s; override PROBE_TIMEOUT).
+# An activation probe only needs the skill to FIRE (seconds), not to complete any
+# work — so a tight ceiling is correct and also caps the blast radius if a probed
+# skill tries to do real work despite the deny-list above.
+TIMEOUT="${PROBE_TIMEOUT:-120}"
 ELAPSED=0
 while [[ ! -f "$DONE_FILE" ]]; do
   sleep 2

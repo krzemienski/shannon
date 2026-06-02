@@ -327,12 +327,12 @@ Mirrors `/goal` no-arg UX.
 
 - `skills/autopilot-runner/SKILL.md` — Shannon's executor of this doctrine
 - `skills/python-agent-sdk/SKILL.md` — SDK foundation
-- `skills/ralph/SKILL.md` — loop doctrine each phase implicitly uses
+- `ralph` (oh-my-claudecode plugin) — loop doctrine each phase implicitly uses
 - `skills/loop-runner/SKILL.md` — single-phase loop executor
 - `skills/functional-validation/SKILL.md` — perspective #1
 - `Task: critic` (severity-rated review) — perspective #2
 - `skills/judge/SKILL.md` — perspective #3
 - `skills/goal-condition-architect/SKILL.md` — how the success criteria are written
 - `skills/goal-loop-orchestrator/SKILL.md` — transcript-evidence discipline
-- `skills/deep-interview/SKILL.md` — front-end "spec" stage when input is vague
+- `deep-interview` (oh-my-claudecode plugin) — front-end "spec" stage when input is vague
 - `skills/session-handoff/SKILL.md` — cross-session continuity

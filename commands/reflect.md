@@ -22,7 +22,7 @@ Self-refinement loop. Three modes; pick one per invocation.
 4. Output: `reflect.md` at current location.
 
 ### --mode critique
-1. Spawn `Task: critic` in isolated context against target artifact.
+1. Spawn `Task: shannon:critic` in isolated context against target artifact.
 2. Critic emits findings BLOCKING/HIGH/MEDIUM/LOW with cited file:line.
 3. Output: `critique.md`.
 
@@ -37,7 +37,7 @@ Self-refinement loop. Three modes; pick one per invocation.
 - `Skill: reflect` (self mode)
 - `Skill: judge` (critique mode — used by critic)
 - `Skill: memorize` (memorize mode)
-- `Task: critic` (critique mode)
+- `Task: shannon:critic` (critique mode)
 
 ## Success criteria
 

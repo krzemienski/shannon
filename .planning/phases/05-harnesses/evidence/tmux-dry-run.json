@@ -2,14 +2,14 @@
   "mode": "dry-run",
   "runner": "tmux",
   "tooling": {
-    "tmux_path": "/usr/bin/tmux",
-    "claude_path": "/usr/local/bin/claude",
+    "tmux_path": "/opt/homebrew/bin/tmux",
+    "claude_path": "/Users/nick/.local/bin/claude",
     "tmux_available": true,
     "claude_available": true
   },
   "benchmark_count": 5,
   "pillar_coverage": {
-    "embedded-sub-agent-skills": [
+    "preloaded-sub-agent-skills": [
       "pillar-01-embedded-skills"
     ],
     "orchestration-parallel-dispatch": [

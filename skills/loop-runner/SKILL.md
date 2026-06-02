@@ -137,9 +137,9 @@ If the loop is invoked without a rationale, the loop-runner writes `bound_ration
 ## Cross-references
 
 - `skills/autopilot-runner/SKILL.md` — composes this loop per phase
-- `skills/ralph/SKILL.md` — the canonical loop pattern this implementation descends from
+- `ralph` (oh-my-claudecode plugin) — the canonical loop pattern this implementation descends from
 - `skills/goal-loop-orchestrator/SKILL.md` — the transcript-evidence discipline source
-- `skills/northstar/SKILL.md` — the bound-rationale + adversarial-harden discipline source
+- `northstar` — the bound-rationale + adversarial-harden discipline source
 - `skills/functional-validation/SKILL.md` — default verify skill
 - `skills/judge/SKILL.md` — THOROUGH-tier second verify skill
 - `skills/reflect/SKILL.md` — the inner reflection step
@@ -281,9 +281,9 @@ Shannon's `loop-runner` uses the shorter `[SHANNON:LOOP - iter N/M, prior: ...]`
 
 - `skills/loop-runner/SKILL.md` — Shannon's executor of this doctrine
 - `skills/autopilot-runner/SKILL.md` — multi-phase orchestrator that composes ralph loops
-- `skills/ai-slop-cleaner/SKILL.md` — the mandatory cleanup pass
+- `ai-slop-cleaner` (oh-my-claudecode plugin) — the mandatory cleanup pass
 - `skills/goal-loop-orchestrator/SKILL.md` — transcript-evidence discipline
-- `skills/northstar/SKILL.md` — bound-rationale discipline
+- `northstar` — bound-rationale discipline
 - `skills/functional-validation/SKILL.md` — default verify skill
 - `skills/judge/SKILL.md` — THOROUGH-tier second verify skill
 
@@ -439,9 +439,9 @@ Parallels `MEMORY.md` as the index of accumulated learnings.
 
 - `skills/memorize/SKILL.md` — invoked on Act
 - `skills/reflect/SKILL.md` — retrospective discipline source
-- `skills/lesson-learned/SKILL.md` — reflective-tone source
+- `lesson-learned` (oh-my-claudecode plugin) — reflective-tone source
 - `skills/observability-report/SKILL.md` — surfaces PDCA-INDEX in /shannon:retro
-- `skills/why/SKILL.md` (kaizen) — five-whys feeds PDCA hypothesis
+- `why` (oh-my-claudecode plugin, kaizen) — five-whys feeds PDCA hypothesis
 - `skills/goal-condition-architect/SKILL.md` — pattern for crafting falsifiable criteria
 
 ## References

@@ -9,7 +9,7 @@
       "source": "./",
       "description": "Shannon: Claude Code plugin for high-stakes multi-stage agentic work with Iron Rule validation discipline.",
       "category": "agentic-workflow",
-      "version": "1.1.0-dev"
+      "version": "1.2.0"
     }
   ]
 }

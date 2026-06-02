@@ -1,6 +1,6 @@
 {
   "name": "shannon",
-  "version": "1.1.0-dev",
+  "version": "1.2.0",
   "description": "Shannon — Claude Code plugin for high-stakes multi-stage agentic work. Iron Rule: real-system evidence on disk, refuses verdicts without proof. Embedded sub-agent skills (sub-agents carry their skills, can't fail to load). Standalone — no required MCP servers; Context7 and sequential-thinking recommended.",
   "author": {
     "name": "Nick Krzemienski",

@@ -74,7 +74,7 @@ See `references/examples.md` for storage format.
 ## Cross-references (Shannon v7)
 
 - `skills/plan-author/SKILL.md` — primary consumer; invokes this skill as pre-step for GREENFIELD intent.
-- `skills/prd-clarity/SKILL.md` — 100-point clarity rubric (pair this question loop with that scoring).
-- `skills/prompt-improver/SKILL.md` — sibling for the case where the *vague-prompt* path is the issue rather than the *requirements* path.
-- `skills/brainstorm/SKILL.md` — ideation-style sibling (when divergence matters more than depth).
+- `prd-clarity` — 100-point clarity rubric (pair this question loop with that scoring).
+- `prompt-improver` — sibling for the case where the *vague-prompt* path is the issue rather than the *requirements* path.
+- `brainstorm` (oh-my-claudecode plugin) — ideation-style sibling (when divergence matters more than depth).
 - `skills/spec-workflow/SKILL.md` — orchestrator that calls this skill across the research → requirements → design → tasks pipeline.

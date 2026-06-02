@@ -128,7 +128,7 @@ Cache validity expires after 7 days regardless.
 ## Cross-references
 
 - `skills/dispatch-parallel/SKILL.md` — parallel fan-out primitive
-- `skills/sciomc/SKILL.md` — scientists pattern this descends from
+- `sciomc` (oh-my-claudecode plugin) — scientists pattern this descends from
 - `skills/evidence-indexing/SKILL.md` — INDEX.md convention
 - `skills/plan-author/SKILL.md` + `skills/loop-runner/SKILL.md` + `skills/autopilot-runner/SKILL.md` — downstream consumers
 - `skills/observability-report/SKILL.md` — surfaces cross-validation findings in /shannon:retro
@@ -288,11 +288,11 @@ Phase 0 of `/shannon:validate` for new platforms. Maps external standards to Sha
 | WCAG 2.2 AA | 1.4.3 Contrast (Min) | `skills/visual-inspection/SKILL.md` | screenshot + measured contrast ratio |
 | WCAG 2.2 AA | 2.1.1 Keyboard | `skills/functional-validation/SKILL.md` | Playwright keyboard-only run |
 | Apple HIG | Touch targets ≥ 44pt | `skills/visual-inspection/SKILL.md` (iOS) | simulator screenshot + measurement |
-| OWASP API Top 10 | API1: Broken Object Level Authz | `skills/api-validation/SKILL.md` | curl test with foreign-user token returns 403 |
+| OWASP API Top 10 | API1: Broken Object Level Authz | `api-validation` | curl test with foreign-user token returns 403 |
 | OWASP Top 10 | A03 Injection | `skills/no-fakes-discipline/SKILL.md` + code review | static analysis report |
 | POSIX | exit code 0 on success | `skills/functional-validation/SKILL.md` | command output + exit code capture |
 | GDPR | Article 17 Right to Erasure | (gap — no skill maps this) | flag for new skill or human handoff |
-| HIPAA | §164.312 Access Control | `skills/api-validation/SKILL.md` | auth + audit log evidence |
+| HIPAA | §164.312 Access Control | `api-validation` | auth + audit log evidence |
 
 ## Standards-library cache convention
 
@@ -400,7 +400,7 @@ When a standard updates (WCAG 2.1 → 2.2, OWASP Top 10 2021 → 2023):
 
 Documentation research mode (invoked from `/shannon:scope` or `/shannon:research`). Grounds every external dependency claim in fetched documentation, not training-data recall.
 
-Sibling skill: `skills/codebase-research/SKILL.md` covers the **internal** counterpart (grep the repo for existing patterns before writing new code). Documentation-research is the **external** arm; codebase-research is the **internal** arm. Both feed `skills/plan-author/SKILL.md`'s RESEARCH.md and FINDINGS.md.
+Sibling skill: `codebase-research` covers the **internal** counterpart (grep the repo for existing patterns before writing new code). Documentation-research is the **external** arm; codebase-research is the **internal** arm. Both feed `skills/plan-author/SKILL.md`'s RESEARCH.md and FINDINGS.md.
 
 ## Behavior contract
 
@@ -427,7 +427,7 @@ If yes → cite the in-conversation source instead of refetching. Saves tokens a
 
 When research is genuinely needed, follow this order:
 
-1. **Internal codebase** — invoke `skills/codebase-research/SKILL.md` first. Existing patterns are higher-confidence than external opinions.
+1. **Internal codebase** — invoke `codebase-research` first. Existing patterns are higher-confidence than external opinions.
 2. **Existing local docs** — `docs/`, `CLAUDE.md`, prior `e2e-evidence/<run-id>/library-docs-fetch/`.
 3. **Origin/spec docs** — the doc the plan derives from (BRIEF.md, ROADMAP.md, source design doc).
 4. **Official upstream docs** — context7 MCP or canonical docs URL (WebFetch).
@@ -488,8 +488,8 @@ All Task calls in a single message (per dispatch-parallel discipline). Each suba
 
 ## Cross-references
 
-- `skills/codebase-research/SKILL.md` — internal-codebase sibling (grep, glob, git log).
+- `codebase-research` — internal-codebase sibling (grep, glob, git log).
 - `skills/library-docs-fetch/SKILL.md` — Phase 0 standards-to-skill mapping (uses this skill).
 - `skills/plan-author/SKILL.md` — consumer of RESEARCH.md and FINDINGS.md.
-- `skills/prompt-improver/SKILL.md` — Phase 1 research step is structurally analogous.
+- `prompt-improver` — Phase 1 research step is structurally analogous.
 - `skills/gepetto/SKILL.md` — pipeline that orchestrates research → spec → plan with cross-model review.

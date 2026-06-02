@@ -16,7 +16,7 @@ Fully autonomous execution. Wraps `/shannon:cook` in a refusal-driven retry loop
 ## Behavior
 
 For attempt 1..N:
-1. Invoke `/shannon:cook <task>` (which spawns `Task: executor` with embedded validation).
+1. Invoke `/shannon:cook <task>` (which spawns `Task: shannon:executor` with embedded validation).
 2. After cook returns, check `Skill: completion-gate` verdict:
    - `COMPLETE` → exit success.
    - `REFUSED` → read `REFUSAL.md`, parse cited blockers, build remediation prompt for next attempt.
@@ -29,7 +29,7 @@ Refusal is a feature, not a bug. No override flag. No force-complete (per `Skill
 - `Skill: completion-gate`
 - `Skill: refusal-discipline`
 - `Skill: autopilot-runner` (this command IS the autopilot runner)
-- `Task: executor` (delegated via cook)
+- `Task: shannon:executor` (delegated via cook)
 
 ## Success criteria
 
