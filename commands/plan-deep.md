@@ -4,7 +4,7 @@ description: "Alias for /shannon:plan --mode deep — the deepest-plan treatment
 replaces:
   - /deepest-plan:deepest
   - /deepest-plan:deepest-plan
-argument-hint: "<problem> [--candidates N] [--rounds N] [--debate] [--greenfield]"
+argument-hint: "<problem> [--candidates N] [--rounds N] [--phases N] [--greenfield]"
 ---
 
 # /shannon:plan-deep
@@ -42,18 +42,24 @@ still runs `skill-inventory` and only omits `codebase-analysis` (no code to read
    so `/shannon:cook` / `executor` spawns each wave's agents in one message.
 6. Synthesize final plan + wave map; archive intermediate rounds under `_history/`.
 
-## Flag mapping (legacy → canonical)
+## Flags (forwarded verbatim to `/shannon:plan --mode deep`)
 
-`/deepest-plan:deepest` used `--synthesis N` / `--debate`; those map onto `--mode deep`:
+Only flags the canonical command honors are exposed — a true alias invents nothing:
 
-| plan-deep flag | maps to `/shannon:plan --mode deep` |
+| plan-deep flag | forwarded to `/shannon:plan --mode deep` |
 |---|---|
 | `--candidates N` | tournament candidate count (default 3) |
-| `--rounds N` | convergence round count (default 3) |
-| `--debate` | critics exchange critiques across candidates before `plan-author` synthesizes |
-| `--greenfield` | skip `codebase-analysis` pre-flight (empty repo only) |
+| `--rounds N`     | convergence round count (default 3) |
+| `--phases N`     | target phase count for the authored plan |
+| `--greenfield`   | skip `codebase-analysis` pre-flight (empty repo ONLY) |
 
-`--synthesis N` is accepted as a back-compat alias for `--candidates N`.
+**Legacy `/deepest-plan:*` flag mapping (back-compat, no new machinery):**
+- `--synthesis N` → accepted as an alias for `--candidates N`.
+- `--debate` → **no-op / already-on.** The deep pipeline ALWAYS runs adversarial
+  `shannon:critic` review across every tournament candidate and every convergence
+  round, so the legacy "debate" behavior is the default. The flag is accepted and
+  ignored for back-compat — it gates nothing, because `plan.md --mode deep` has no
+  such toggle.
 
 ## Skills + agents (all resolvable — verified)
 
