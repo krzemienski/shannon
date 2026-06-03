@@ -214,15 +214,30 @@ def main():
         have_jsonl = bool(args.session_jsonl) and Path(args.session_jsonl).is_file()
         act_log = None if have_jsonl else first_match(skill_activated_patterns(args.expect), combined)
         act = act_jsonl or bool(act_log)
+        # Registration is a PRECONDITION of activation: a skill cannot emit a Skill
+        # tool_use unless it was registered. So when activation is proven by the
+        # authoritative JSONL signal, registration is proven transitively — even
+        # though the debug-log text pattern (`reg`) is dead in claude 2.1.x (it no
+        # longer prints per-skill "N skills loaded" dispatch lines; see
+        # read_session_skill_invocations docstring). Gating the verdict on the dead
+        # text pattern stamped REGISTRATION_FAILURE on genuinely-HEALTHY probes
+        # (proven 2026-06-03 smoke: 1 real Skill tool_use, f1=1.0, yet
+        # verdict=REGISTRATION_FAILURE). The f1 gate reads `activated` and was always
+        # correct; this only repairs the human-facing verdict label + `registered`.
+        registered = bool(reg) or act_jsonl
         result.update({
-            "registered": bool(reg),
-            "registered_evidence": reg,
+            "registered": registered,
+            "registered_evidence": (
+                reg if reg
+                else (f"transitive: Skill tool_use proves registration ({args.expect})"
+                      if act_jsonl else None)
+            ),
             "activated": act,
             "activated_evidence": (
                 f"session-jsonl Skill tool_use: {args.expect}" if act_jsonl else act_log
             ),
             "verdict": (
-                "REGISTRATION_FAILURE" if not reg
+                "REGISTRATION_FAILURE" if not registered
                 else "ACTIVATION_FAILURE" if not act
                 else "HEALTHY"
             ),
