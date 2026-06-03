@@ -94,15 +94,54 @@ def parse_triggers_block(skill_md_text):
     return out
 
 
+# A bare-deictic trigger ends in a dangling "this"/"it" with no specifying object
+# ("plan this", "validate this", "remember this"). In a cold-start probe (no prior
+# conversation) such a fragment has no antecedent, so the model answers with a
+# CLARIFYING QUESTION ("this = what?") rather than an activation decision — a false
+# 0/2 that looks like an activation gap but is a MEASUREMENT artifact. (Root-caused
+# 2026-06-02: ~14 skills scored 0/2 this way; every one ALSO had a self-sufficient
+# trigger that was simply never probed because synthesis iterated from index 0 and
+# the bare-deictic phrasing happened to be first.) The proven-good counter-example:
+# wave-execution's "run this plan by decomposing it into dependency-ordered waves"
+# fired 10/10 despite containing "this plan" — because the verb+manner fully specify
+# the capability; the deictic is not load-bearing.
+#
+# THE FIX IS SELECTION, NOT FABRICATION. The earlier CONTEXT_PREAMBLE attempt
+# injected a fake repo-context antecedent; the probe model fact-checked it against
+# the real repo and debunked it (self-defeating, reverted). Here we add ZERO claims:
+# we simply PREFER the skill's own self-sufficient triggers over its bare-deictic
+# ones. A skill with NO self-sufficient trigger surfaces that as a finding (its
+# probes stay bare and it will still under-fire) — which is a real authoring gap to
+# fix in the SKILL.md, not something to paper over here.
+_BARE_DEICTIC = re.compile(r"\b(this|it)\s*$", re.IGNORECASE)
+
+
+def _is_self_sufficient(phrase):
+    """A trigger is self-sufficient if it specifies the capability without relying
+    on a dangling deictic object — i.e. it does NOT end in a bare 'this'/'it', OR it
+    is long enough (>=4 words) that the verb+manner carry the meaning regardless."""
+    p = phrase.strip()
+    if not p:
+        return False
+    if len(p.split()) >= 4:
+        return True
+    return not bool(_BARE_DEICTIC.search(p))
+
+
 def synth_should_prompts(skill, trigger_phrases, n):
-    """Natural should-trigger prompts. Prefer the author's own trigger phrases;
-    fall back to the description's 'Use when …' clause. We never inject the skill
-    NAME — a healthy skill must fire from task phrasing alone."""
-    prompts = []
-    for p in trigger_phrases:
-        p = p.strip()
-        if p:
-            prompts.append(p)
+    """Natural should-trigger prompts. Prefer the author's own trigger phrases —
+    SELF-SUFFICIENT ones first (see _is_self_sufficient + the note above) — falling
+    back to bare-deictic triggers and the description's 'Use when …' clause only if
+    needed. We never inject the skill NAME and never fabricate context: a healthy
+    skill must fire from real task phrasing alone."""
+    raw = [p.strip() for p in trigger_phrases if p and p.strip()]
+    # Stable partition: self-sufficient triggers first, bare-deictic ones after,
+    # preserving author order within each group. This is the load-bearing fix —
+    # cold-start probes now lead with phrasings that elicit activation, not
+    # clarification, WITHOUT adding any synthetic content.
+    self_suff = [p for p in raw if _is_self_sufficient(p)]
+    bare = [p for p in raw if not _is_self_sufficient(p)]
+    prompts = self_suff + bare
     desc = skill.get("description", "") or ""
     m = re.search(r"[Uu]se (?:this )?(?:skill )?when (.+?)(?:\.|$)", desc)
     if m:
@@ -111,7 +150,8 @@ def synth_should_prompts(skill, trigger_phrases, n):
         prompts.append(f"I need to {clause}")
     if not prompts:
         return []
-    # Pad/trim to n, varying surface form lightly.
+    # Pad/trim to n, varying surface form lightly. Self-sufficient triggers are
+    # consumed first by construction.
     variants, i = [], 0
     while len(variants) < n:
         base = prompts[i % len(prompts)]
