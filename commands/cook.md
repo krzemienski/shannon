@@ -20,13 +20,15 @@ End-to-end implementation runner. Plan if needed → execute against real system
 
 1. **Pre-flight (default; non-skippable on non-empty repos):** auto-invoke `/shannon:scope --task "<positional arg>"` to run codebase-analysis + skill-inventory + observability-report in parallel. Skip ONLY if `--greenfield` is passed. The scope-report becomes the planner's context.
 2. Argument classification: if arg resolves to filesystem path → read as plan; else treat as brief.
-3. If brief AND not `--auto`: invoke `Task: shannon:planner` with the scope-report as context → emits `plans/<date>-<slug>/{plan.md, phase-NN-*.md}`. Every plan task cites a specific file or a specific skill from the scope-report.
+3. If brief AND not `--auto`: invoke `Task: shannon:planner` with the scope-report as context → emits `plans/<date>-<slug>/{plan.md, phase-NN-*.md}`. Every plan task cites a specific file or a specific skill from the scope-report. Label each external dependency "agent can set it up" or "needs owner action", and prefer the first.
 4. If brief AND `--auto`: skip planner; synthesize a one-shot phase prompt inline.
 5. Spawn `Task: shannon:executor` with phase plan + IRON-RULE injection.
 6. After executor completes each phase: invoke `Skill: functional-validation` against the affected surface (unless `--no-validate`).
 7. Before marking complete: invoke `Skill: evidence-gate` — 5-question checklist must all answer yes.
 8. Before marking complete: invoke `Skill: completion-gate` — mechanical criteria check.
 9. On any FAIL: route to `/shannon:fix` flow OR surface refusal via `Skill: refusal-discipline`.
+10. Delegate inputs: commit to main (or pass by absolute path) anything a delegate or the owner must read before pointing them at it. Merge each stage's state and evidence to main as the stage closes; leave nothing only in a worktree.
+11. After a mid-run owner correction: write a "stops / resumes" note that quotes the owner's words, and check every new lane against it before spawning.
 
 ## Skills + agents
 
